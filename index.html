@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>开普敦与赫曼努斯漫游手册 · 4人自由行</title>
+  <title>跨越红海去南非抢超市</title>
   <style>
     :root {
       --bg-primary: #f8fafc;
@@ -51,6 +51,23 @@
       max-width: 640px;
       margin: 0 auto;
       padding: 16px;
+    }
+
+    /* 顶部大标题 */
+    .page-main-header {
+      text-align: center;
+      margin: 12px 0 20px;
+    }
+    .page-main-header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+    .page-main-header p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
     }
 
     /* 顶部此刻关注卡片 */
@@ -278,7 +295,7 @@
     .tag-book { background: var(--tag-book-bg); color: var(--tag-book-text); }
     .tag-warn { background: var(--tag-warn-bg); color: var(--tag-warn-text); }
 
-    /* 纯展示待办清单（禁止复选框） */
+    /* 待办清单 */
     .todo-card {
       background: var(--bg-card);
       border-radius: 14px;
@@ -323,6 +340,12 @@
 <body>
 
   <div class="container">
+
+    <!-- 页面专属顶头大标题 -->
+    <div class="page-main-header">
+      <h1>跨越红海去南非抢超市</h1>
+      <p>4人自由行 · 2026.11.21 - 11.27 · 开普敦 & 赫曼努斯</p>
+    </div>
 
     <!-- 1. 顶部「此刻关注」卡片 -->
     <div class="hero-card">
@@ -441,7 +464,7 @@
     </div>
 
     <!-- 4. 逐日行程 -->
-    <div class="section-title">逐日松弛漫游行程 (按新计划核对)</div>
+    <div class="section-title">逐日松弛漫游行程</div>
 
     <!-- D1 -->
     <div class="day-container">
@@ -684,7 +707,7 @@
       </div>
     </div>
 
-    <!-- D6 (替代 Safari: 轻松城市文化与美食) -->
+    <!-- D6 -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d6')">
         <div class="day-title-group">
@@ -848,76 +871,3 @@
   </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>跨越红海去南非抢超市</title>
-  <style>
-    :root {
-      --bg-primary: #f8fafc;
-      --bg-card: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --accent: #0284c7;
-      --accent-bg: #e0f2fe;
-      --border-color: #e2e8f0;
-      --tag-warn-bg: #fef3c7;
-      --tag-warn-text: #b45309;
-      --tag-book-bg: #fee2e2;
-      --tag-book-text: #b91c1c;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-primary: #0b1120;
-        --bg-card: #1e293b;
-        --text-main: #f1f5f9;
-        --text-muted: #94a3b8;
-        --accent: #38bdf8;
-        --accent-bg: #0c4a6e;
-        --border-color: #334155;
-        --tag-warn-bg: #78350f;
-        --tag-warn-text: #fde68a;
-        --tag-book-bg: #7f1d1d;
-        --tag-book-text: #fecaca;
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-      }
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      line-height: 1.5;
-      padding-bottom: 50px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    /* 顶部大标题 */
-    .page-main-header {
-      text-align: center;
-      margin: 12px 0 20px;
-    }
-    .page-main-header h1 {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text-main);
-      letter-spacing: -0.02em;
-    }
-    .page-main-header p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* 顶部此刻关注
