@@ -1,1 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>开普敦与赫曼努斯漫游手册 · 4人自由行</title>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent: #0284c7;
+      --accent-bg: #e0f2fe;
+      --border-color: #e2e8f0;
+      --tag-warn-bg: #fef3c7;
+      --tag-warn-text: #b45309;
+      --tag-book-bg: #fee2e2;
+      --tag-book-text: #b91c1c;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary: #0b1120;
+        --bg-card: #1e293b;
+        --text-main: #f1f5f9;
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-bg: #0c4a6e;
+        --border-color: #334155;
+        --tag-warn-bg: #78350f;
+        --tag-warn-text: #fde68a;
+        --tag-book-bg: #7f1d1d;
+        --tag-book-text: #fecaca;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 50px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* 顶部此刻关注卡片 */
+    .hero-card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+    .hero-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .hero-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-main);
+    }
+    .countdown-timer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    .timer-unit {
+      background: var(--bg-primary);
+      padding: 10px 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .timer-num {
+      font-size: 24px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+    .timer-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* 分区标题 */
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* 手绘感 SVG 地图容器 */
+    .map-card {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+    .map-svg {
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+      border-radius: 12px;
+      background: var(--bg-primary);
+    }
+
+    /* 预订与凭证卡片 */
+    .booking-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .booking-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .booking-type {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+    .booking-time {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .booking-name {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .booking-detail {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      margin-top: 4px;
+      word-break: break-all;
+    }
+
+    /* 逐日行程折叠与时间轴 */
+    .day-container {
+      background: var(--bg-card);
+      border-radius: 16px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+    .day-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: var(--bg-card);
+    }
+    .day-title-group h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .day-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .day-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-route {
+      font-size: 12px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .day-content {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border-color);
+    }
+    .day-mini-map {
+      background: var(--bg-primary);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 12px 0 16px;
+      border-left: 3px solid var(--accent);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+    .t-time {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .t-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .t-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    .tag-book { background: var(--tag-book-bg); color: var(--tag-book-text); }
+    .tag-warn { background: var(--tag-warn-bg); color: var(--tag-warn-text); }
+
+    /* 纯展示待办清单（禁止复选框） */
+    .todo-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+    }
+    .todo-list {
+      list-style-type: none;
+    }
+    .todo-item {
+      font-size: 14px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .todo-item:last-child { border-bottom: none; }
+    .todo-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* 贴士列表 */
+    .tips-card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .tips-card strong { color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 1. 顶部「此刻关注」卡片 -->
+    <div class="hero-card">
+      <div class="hero-label">此刻关注 · Next Anchor</div>
+      <div class="hero-title" id="next-event-title">计算下一个行程事件中...</div>
+      <div class="countdown-timer">
+        <div class="timer-unit">
+          <div class="timer-num" id="cd-days">--</div>
+          <div class="timer-label">天</div>
+        </div>
+        <div class="timer-unit">
+          <div class="timer-num" id="cd-hours">--</div>
+          <div class="timer-label">时</div>
+        </div>
+        <div class="timer-unit">
+          <div class="timer-num" id="cd-mins">--</div>
+          <div class="timer-label">分</div>
+        </div>
+        <div class="timer-unit">
+          <div class="timer-num" id="cd-secs">--</div>
+          <div class="timer-label">秒</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 行程总览手绘感地图 -->
+    <div class="section-title">全域动线与每晚住宿分布 (4人自由行)</div>
+    <div class="map-card">
+      <svg class="map-svg" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 60,30 Q 110,120 90,200 T 130,290" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4" />
+        <text x="25" y="80" fill="#64748b" font-size="11" font-weight="bold">ATLANTIC OCEAN</text>
+        
+        <!-- D1-D3 市区/桌山/半岛 (蓝线) -->
+        <path d="M 120,70 L 140,110 L 105,240" fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+        <!-- D4-D5 专车往返赫曼努斯 (橙线) -->
+        <path d="M 120,70 Q 250,120 390,240" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="5,5" stroke-linecap="round"/>
+        <!-- D6-D7 康斯坦提亚酒庄与海之角 (绿线) -->
+        <path d="M 115,75 L 145,130" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+
+        <!-- 节点：开普敦 CBD / Sea Point -->
+        <circle cx="120" cy="70" r="7" fill="#0284c7" />
+        <text x="132" y="66" fill="currentColor" font-size="12" font-weight="bold">开普敦 (CBD / Sea Point)</text>
+        <text x="132" y="80" fill="#64748b" font-size="10">宿 11.21-24 & 11.25-27</text>
+
+        <!-- 节点：桌山 & 坎普斯湾 -->
+        <circle cx="140" cy="110" r="5" fill="#0284c7" />
+        <text x="152" y="114" fill="currentColor" font-size="10">桌山 & Camps Bay (11.22)</text>
+
+        <!-- 节点：企鹅滩 & 好望角 -->
+        <circle cx="105" cy="240" r="5" fill="#0284c7" />
+        <text x="117" y="244" fill="currentColor" font-size="10">西蒙镇 & 好望角 (11.23 包车)</text>
+
+        <!-- 节点：赫曼努斯 Hermanus -->
+        <circle cx="390" cy="240" r="7" fill="#f97316" />
+        <text x="315" y="265" fill="currentColor" font-size="12" font-weight="bold">赫曼努斯 (宿 11.24 接送)</text>
+      </svg>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+        ● 蓝线：桌山与半岛游 · 橙虚线：专车接送赫曼努斯往返 · 绿线：海之角与酒庄散心
+      </div>
+    </div>
+
+    <!-- 3. 已确认交通与住宿（脱敏纯净版） -->
+    <div class="section-title">已确认交通与住宿 (4位成人)</div>
+    
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">去程航班 · 埃塞俄比亚航空</span>
+        <span class="booking-time">11-20 至 11-21</span>
+      </div>
+      <div class="booking-name">ET0463 (JED 15:20) ➔ 经转 ADD ➔ ET0845 (CPT 13:00)</div>
+      <div class="booking-detail">抵达后 4 人叫一辆 UberXL 前往市区公寓，轻松装载行李。</div>
+    </div>
+
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">回程航班 · 埃塞俄比亚航空</span>
+        <span class="booking-time">11-27 至 11-28</span>
+      </div>
+      <div class="booking-name">ET0846 (CPT 15:10) ➔ 经转 ADD ➔ ET0462 (JED 13:30)</div>
+      <div class="booking-detail">11-27 中午 12:00 前到达机场办退税与行李托运。</div>
+    </div>
+
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">住宿 · CBD 公寓 (3晚)</span>
+        <span class="booking-time">11.21 16:00 入住 - 11.24 10:00 退房</span>
+      </div>
+      <div class="booking-name">Central City Oasis 2BR</div>
+      <div class="booking-detail">房东电话：+27 83 727 7324</div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">
+        📍 3 Saint Georges Mall, Cape Town (点此导航)
+      </a>
+    </div>
+
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">住宿 · 赫曼努斯小木屋 (1晚)</span>
+        <span class="booking-time">11.24 15:00 入住 - 11.25 10:00 退房</span>
+      </div>
+      <div class="booking-name">Conveniently Located 2 Bedroom Cottage (6 Stemmet Lodge)</div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=6+Stemmet+Lodge+Hermanus" target="_blank">
+        📍 Overstrand / Hermanus (点此导航)
+      </a>
+    </div>
+
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">住宿 · 海之角海景公寓 (2晚)</span>
+        <span class="booking-time">11.25 15:00 入住 - 11.27 10:00 退房</span>
+      </div>
+      <div class="booking-name">Adelphi Centre 5th Floor Apartment (2BR)</div>
+      <div class="booking-detail">房东电话：+27 82 871 6320</div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Adelphi+Centre+28+Hofmeyr+Road+Sea+Point" target="_blank">
+        📍 28 Hofmeyr Road, Sea Point, Cape Town (点此导航)
+      </a>
+    </div>
+
+    <!-- 4. 逐日行程 -->
+    <div class="section-title">逐日松弛漫游行程 (按新计划核对)</div>
+
+    <!-- D1 -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d1')">
+        <div class="day-title-group">
+          <h3>Day 1 · 11月21日 (周六) 抵达开普敦</h3>
+          <div class="day-subtitle">下午入住 · 漫步 V&A Waterfront 码头海滨</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/Cape+Town+International+Airport/3+St+Georges+Mall/Victoria+Wharf+Shopping+Centre/Knysna+Oyster+Company+-+V%26A+Waterfront" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d1">
+        <div class="day-mini-map">动线：CPT 机场 ➔ CBD 公寓入住 ➔ 打车至 V&A Waterfront 逛街看海吃晚餐</div>
+        <div class="timeline-item">
+          <div class="t-time">13:00</div>
+          <div class="t-content">
+            <h4>落地开普敦机场</h4>
+            <div class="t-desc">取行李，航站楼开通本地网络，直接呼叫 UberXL 前往市中心公寓（车程约 25 分钟）。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">15:00</div>
+          <div class="t-content">
+            <h4>入住 CBD 两居室公寓</h4>
+            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">📍 3 Saint Georges Mall</a> 安顿行李，稍微休息。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">17:30</div>
+          <div class="t-content">
+            <h4>V&A Waterfront 海滨漫步与生蚝晚餐</h4>
+            <div class="t-desc">
+              打车 10 分钟至 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Victoria+Wharf+Shopping+Centre" target="_blank">📍 Victoria Wharf Shopping Centre</a>。吹海风看夕阳下的港湾，在 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Knysna+Oyster+Company+V%26A+Waterfront" target="_blank">📍 Knysna Oyster Company</a> 享用鲜活生蚝与海鲜意式炖饭。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d2')">
+        <div class="day-title-group">
+          <h3>Day 2 · 11月22日 (周日) 桌山 + Camps Bay</h3>
+          <div class="day-subtitle">云海缆车 · 网红椅子 · 绝美日落与牛排</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/Table+Mountain+Aerial+Cableway/Camps+Bay+Beach/Bo-Vine+Wine+%26+Grill+House+Camps+Bay" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d2">
+        <div class="day-mini-map">动线：CBD ➔ 桌山缆车站 ➔ 打车前往坎普斯湾海滩 ➔ 观景台网红椅 ➔ 日落牛排</div>
+        <div class="timeline-item">
+          <div class="t-time">09:00</div>
+          <div class="t-content">
+            <span class="tag tag-book">视天气提前官网买缆车票</span>
+            <h4>桌山缆车 (Table Mountain)</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Table+Mountain+Aerial+Cableway" target="_blank">📍 Table Mountain Aerial Cableway</a> 
+              趁上午风力小登顶，360 度旋转缆车站，俯瞰开普敦全城与大西洋云海。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">12:30</div>
+          <div class="t-content">
+            <h4>前往坎普斯湾 (Camps Bay Beach)</h4>
+            <div class="t-desc">
+              下山后打车直奔 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Camps+Bay+Beach" target="_blank">📍 Camps Bay 海滩</a>。在海滨棕榈大道选一家露天餐厅（如 Pizza Connection 或海滨简餐）吃午餐。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">15:30</div>
+          <div class="t-content">
+            <h4>网红黄椅子打卡与沙滩拍照</h4>
+            <div class="t-desc">
+              打卡 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Camps+Bay+Beach+and+Table+Mountain+View+Point" target="_blank">📍 Camps Bay View Point</a> 的官方黄色框框/网红椅，背靠十二门徒峰拍照出片。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">18:00</div>
+          <div class="t-content">
+            <h4>海上日落盛宴：Bo-Vine Camps Bay</h4>
+            <div class="t-desc">
+              在 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Bo-Vine+Wine+%26+Grill+House+Camps+Bay" target="_blank">📍 Bo-Vine Camps Bay</a> 伴着落日晚霞享用 300g 肋眼牛排与和牛汉堡。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d3')">
+        <div class="day-title-group">
+          <h3>Day 3 · 11月23日 (周一) 开普半岛一日游</h3>
+          <div class="day-subtitle">预约包车 · 企鹅滩 · 西蒙小镇 · 好望角</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/Boulders+Beach/Simon's+Town/Cape+Point/Cape+of+Good+Hope" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d3">
+        <div class="day-mini-map">动线：CBD 专车接送 ➔ 企鹅滩 ➔ 西蒙镇漫步 ➔ 开普角与好望角 ➔ 返程</div>
+        <div class="timeline-item">
+          <div class="t-time">09:00</div>
+          <div class="t-content">
+            <h4>专车至博尔德斯企鹅滩 (Boulders Beach)</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Boulders+Beach" target="_blank">📍 Boulders Beach</a> 
+              木栈道近距离看憨态可掬的野生南非企鹅，避开正午大客流。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">11:30</div>
+          <div class="t-content">
+            <h4>西蒙镇 (Simon's Town) 漫步</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Simon's+Town" target="_blank">📍 Simon's Town</a> 维多利亚风格海港小镇，吃海鲜简餐、喝杯咖啡逛逛小店。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">13:30</div>
+          <div class="t-content">
+            <h4>开普角 (Cape Point) 与 Two Oceans 火焰虾</h4>
+            <div class="t-desc">
+              乘缆车或徒步上旧灯塔；中午在 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Two+Oceans+Restaurant+Cape+Point" target="_blank">📍 Two Oceans Restaurant</a> 尝火焰烤大虾。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">15:30</div>
+          <div class="t-content">
+            <h4>打卡非洲大陆西南端：好望角标志牌</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+of+Good+Hope" target="_blank">📍 Cape of Good Hope</a> 经纬度标志牌打卡合影，感受大西洋惊涛骇浪，傍晚包车送回市区。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d4')">
+        <div class="day-title-group">
+          <h3>Day 4 · 11月24日 (周二) 开普敦 ➔ 赫曼努斯</h3>
+          <div class="day-subtitle">专车接送 · 沿海步道 · 老港口 · 悬崖岩洞餐厅</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/6+Stemmet+Lodge+Hermanus/Old+Harbour+Museum+Hermanus/Bientang's+Cave+Restaurant+%26+Wine+Bar" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d4">
+        <div class="day-mini-map">动线：CBD 退房 ➔ 专车送达赫曼努斯 ➔ Cliff Path 步道 ➔ 老港口 ➔ 洞穴海景晚餐</div>
+        <div class="timeline-item">
+          <div class="t-time">10:00</div>
+          <div class="t-content">
+            <span class="tag tag-warn">专车接送·4人同行舒适省心</span>
+            <h4>CBD 公寓退房，专车启程</h4>
+            <div class="t-desc">请师傅走 R44 Clarence Drive 景观大道，中途可在观景台停车眺望海景。车程约 2 小时。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">13:00</div>
+          <div class="t-content">
+            <h4>入住赫曼努斯 2BR 小木屋</h4>
+            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=6+Stemmet+Lodge+Hermanus" target="_blank">📍 6 Stemmet Lodge</a> 安顿好行李。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">14:30</div>
+          <div class="t-content">
+            <h4>漫步 Cliff Path 海岸步道与老港口</h4>
+            <div class="t-desc">
+              徒步 Cliff Path 悬崖栈道，打卡 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Old+Harbour+Hermanus" target="_blank">📍 Old Harbour 老港口</a> 与 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Whale+Museum+Hermanus" target="_blank">Whale Museum</a>，沿途常能直接眺望到露脊鲸！
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">18:00</div>
+          <div class="t-content">
+            <span class="tag tag-book">强烈建议提前订座</span>
+            <h4>传奇悬崖洞穴海鲜：Bientang's Cave</h4>
+            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Bientang's+Cave+Restaurant+Hermanus" target="_blank">📍 Bientang's Cave Restaurant</a> 在真正嵌于海崖岩石里的露天位听涛声、品白葡萄酒与海鲜。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d5')">
+        <div class="day-title-group">
+          <h3>Day 5 · 11月25日 (周三) 赫曼努斯 ➔ 海之角</h3>
+          <div class="day-subtitle">出海观鲸 · 专车返程 · 入住海景公寓</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/6+Stemmet+Lodge+Hermanus/Pear+Tree+Hermanus/Adelphi+Centre+Sea+Point" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d5">
+        <div class="day-mini-map">动线：赫曼努斯海边漫步/出海 ➔ 午餐取行李 ➔ 专车返程 ➔ 入住 Sea Point 公寓</div>
+        <div class="timeline-item">
+          <div class="t-time">09:00</div>
+          <div class="t-content">
+            <h4>海边散步或出海观鲸巡游</h4>
+            <div class="t-desc">吹着清爽海风在海边步道晨走，若想近距离看鲸可报名当地观鲸游船。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">12:00</div>
+          <div class="t-content">
+            <h4>午餐：Pear Tree Bistro</h4>
+            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Pear+Tree+Bistro+Hermanus" target="_blank">📍 Pear Tree Bistro</a> 享用轻食、松露薯条与软壳蟹，饭后回木屋取行李。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">14:00</div>
+          <div class="t-content">
+            <h4>预约专车返程开普敦</h4>
+            <div class="t-desc">舒适乘车返回市区，下午 16:00 左右直达海之角住宿。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">16:30</div>
+          <div class="t-content">
+            <h4>入住 Sea Point 海之角两居室</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Adelphi+Centre+28+Hofmeyr+Road+Sea+Point" target="_blank">📍 Adelphi Centre 5楼公寓</a> 
+              晚间可在 Sea Point 海滨长廊散步，晚上还能顺道逛逛周三仅有的 Oranjezicht 夜市！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D6 (替代 Safari: 轻松城市文化与美食) -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d6')">
+        <div class="day-title-group">
+          <h3>Day 6 · 11月26日 (周四) 历史名庄与极品鲜味</h3>
+          <div class="day-subtitle">免去 Safari 颠簸 · 康斯坦提亚酒庄 · 华都鲜鲍大龙虾 · 慢淘古玩</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/Adelphi+Centre+Sea+Point/Groot+Constantia/huadoo+restaurant/Lotus+collectables" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d6">
+        <div class="day-mini-map">动线：Sea Point 打车 ➔ 康斯坦提亚历史酒庄 ➔ 亚洲海鲜盛宴 ➔ 古董店淘物</div>
+        <div class="timeline-item">
+          <div class="t-time">10:00</div>
+          <div class="t-content">
+            <h4>开普敦最古老庄园：Groot Constantia</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Groot+Constantia" target="_blank">📍 Groot Constantia</a> 
+              距离市区仅 25 分钟车程，在古老橡树林与庄园里悠闲漫步，品尝拿破仑同款传奇甜白酒。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">13:00</div>
+          <div class="t-content">
+            <h4>鲜鲍龙虾盛宴：huadoo restaurant (华都)</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=huadoo+restaurant+Cape+Town" target="_blank">📍 Huadoo Restaurant</a> 
+              4 人分享超划算！现挑鲜活野生南非鲍鱼与姜葱大龙虾，满足中国胃。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">15:30</div>
+          <div class="t-content">
+            <h4>寻宝时光：Lotus Collectables & Antiques</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Lotus+collectables+%26+antiques+Cape+Town" target="_blank">📍 Lotus 古玩店</a> 
+              慢悠悠淘淘殖民时期的复古银器、首饰、瓷器和航海旧物，享受不赶路的松弛。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D7 -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d7')">
+        <div class="day-title-group">
+          <h3>Day 7 · 11月27日 (周五) 告别开普敦</h3>
+          <div class="day-subtitle">顶级手冲咖啡 · 海滨退房 · 满载而归</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/Adelphi+Centre+Sea+Point/MIKRO+COFFEE+CO/Cape+Town+International+Airport" target="_blank" onclick="event.stopPropagation();">全天路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d7">
+        <div class="day-mini-map">动线：Sea Point ➔ MIKRO 咖啡 ➔ 退房 ➔ UberXL 送往机场</div>
+        <div class="timeline-item">
+          <div class="t-time">09:00</div>
+          <div class="t-content">
+            <h4>打卡 4.9 分神级烘焙店：MIKRO COFFEE CO</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=MIKRO+COFFEE+CO+Cape+Town" target="_blank">📍 MIKRO COFFEE CO</a> 
+              喝一杯香醇拿铁，顺手带两包开普敦本地烘焙的高品质咖啡豆做伴手礼。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">10:00</div>
+          <div class="t-content">
+            <h4>退房并预约 UberXL 前往机场</h4>
+            <div class="t-desc">行李全部装车。建议 11:45 左右抵达机场，留出充足时间退税并托运行李。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">15:10</div>
+          <div class="t-content">
+            <h4>ET0846 航班起飞离开开普敦</h4>
+            <div class="t-desc">经转 ADD 亚的斯亚贝巴，返回吉达。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 待办清单 -->
+    <div class="section-title">行前待办备忘清单 (改动请联系我更新)</div>
+    <div class="todo-card">
+      <ul class="todo-list">
+        <li class="todo-item"><span class="todo-dot"></span>【接送】提前预订 11.23 半岛一日游包车（4人舒适商务车型）</li>
+        <li class="todo-item"><span class="todo-dot"></span>【接送】预订 11.24 开普敦➔赫曼努斯、11.25 赫曼努斯➔海之角专车</li>
+        <li class="todo-item"><span class="todo-dot"></span>【订座】预订 Bientang's Cave 悬崖洞穴海景晚餐 (11.24 晚)</li>
+        <li class="todo-item"><span class="todo-dot"></span>【门票】桌山缆车视 11.22 当天及前一天天气情况在官网出票</li>
+        <li class="todo-item"><span class="todo-dot"></span>【支付】开通双币/多币种信用卡的南非境外无卡及 Apple Pay 支付权限</li>
+      </ul>
+    </div>
+
+    <!-- 6. 实用贴士 -->
+    <div class="section-title">南非实用安全与出行贴士</div>
+    <div class="tips-card">
+      <strong>🚕 4 人出行建议</strong>：市区内一律叫 <strong>UberXL</strong>（6座SUV或商务车），空间充裕，4 个人分摊下来比坐公交还便宜很多且极度安全。<br><br>
+      <strong>💳 支付习惯</strong>：全境 Apple Pay 和信用卡极度普及，超市、餐厅、加油站甚至集市摊位均可挥卡或刷手表，几乎零现金需求。备 100~200 兰特现金零钱用于路边停车向导（Car Guard）小费（一般给 5~10 兰特）即可。<br><br>
+      <strong>🛡️ 安全底线</strong>：天黑后绝不在 CBD 街头徒步；在露天餐位吃饭时，手机千万不要随手放在临街桌面；出门贵重饰品尽量不外露。
+    </div>
+
+  </div>
+
+  <script>
+    // 时间节点表（带显式时区偏移量，无论跨时区何处打开均准确无误）
+    const scheduleEvents = [
+      { name: "✈️ ET0463 航班从吉达起飞", time: new Date("2026-11-20T15:20:00+03:00") },
+      { name: "🛬 ET0845 航班降落开普敦", time: new Date("2026-11-21T13:00:00+02:00") },
+      { name: "🏡 入住开普敦 CBD 公寓", time: new Date("2026-11-21T15:00:00+02:00") },
+      { name: "🚠 登桌山看大西洋云海", time: new Date("2026-11-22T09:00:00+02:00") },
+      { name: "🐧 启程半岛一日游 (企鹅滩+好望角)", time: new Date("2026-11-23T09:00:00+02:00") },
+      { name: "🚗 专车前往赫曼努斯小镇", time: new Date("2026-11-24T10:00:00+02:00") },
+      { name: "🌊 赫曼努斯出海观鲸巡游", time: new Date("2026-11-25T09:00:00+02:00") },
+      { name: "🏡 专车返回海之角 Sea Point 公寓", time: new Date("2026-11-25T16:00:00+02:00") },
+      { name: "🍷 探访康斯坦提亚酒庄与华都鲜鲍", time: new Date("2026-11-26T10:00:00+02:00") },
+      { name: "🛫 ET0846 航班起飞告别开普敦", time: new Date("2026-11-27T15:10:00+02:00") }
+    ];
+
+    function updateCountdown() {
+      const now = new Date();
+      let nextEvent = scheduleEvents.find(e => e.time > now);
+
+      if (!nextEvent) {
+        document.getElementById("next-event-title").innerText = "🎉 开普敦自由行圆满收官！";
+        document.getElementById("cd-days").innerText = "0";
+        document.getElementById("cd-hours").innerText = "0";
+        document.getElementById("cd-mins").innerText = "0";
+        document.getElementById("cd-secs").innerText = "0";
+        return;
+      }
+
+      document.getElementById("next-event-title").innerText = nextEvent.name;
+
+      const diffMs = nextEvent.time - now;
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diffMs / (1000 * 60)) % 60);
+      const secs = Math.floor((diffMs / 1000) % 60);
+
+      document.getElementById("cd-days").innerText = days;
+      document.getElementById("cd-hours").innerText = hours;
+      document.getElementById("cd-mins").innerText = mins;
+      document.getElementById("cd-secs").innerText = secs;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    function toggleDay(id) {
+      const el = document.getElementById(id);
+      if (el.style.display === "none") {
+        el.style.display = "block";
+      } else {
+        el.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
