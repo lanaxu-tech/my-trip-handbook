@@ -56,7 +56,7 @@
     /* 顶部大标题 */
     .page-main-header {
       text-align: center;
-      margin: 12px 0 20px;
+      margin: 12px 0 16px;
     }
     .page-main-header h1 {
       font-size: 22px;
@@ -68,6 +68,186 @@
       font-size: 13px;
       color: var(--text-muted);
       margin-top: 4px;
+    }
+
+    /* 顶部记账快捷入口按钮 */
+    .quick-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .btn-bill-entry {
+      flex: 1;
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+    }
+    .btn-bill-entry:active {
+      transform: scale(0.98);
+    }
+
+    /* 账单卡片 */
+    .bill-panel {
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      display: none;
+    }
+    .bill-panel.open {
+      display: block;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .btn-close {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* 记账表单 */
+    .bill-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .form-row {
+      display: flex;
+      gap: 8px;
+    }
+    .form-row > * {
+      flex: 1;
+    }
+    .form-input, .form-select {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--accent);
+    }
+    .btn-submit-bill {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 11px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 6px;
+      cursor: pointer;
+    }
+
+    /* 4人统计小卡 */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 16px 0;
+    }
+    .stat-box {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+    .stat-person {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-val {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+      font-weight: 600;
+    }
+
+    /* 账单历史明细列表 */
+    .bill-records {
+      border-top: 1px dashed var(--border-color);
+      padding-top: 12px;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+    .record-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 13px;
+    }
+    .record-item:last-child {
+      border-bottom: none;
+    }
+    .rec-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .rec-tag {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .rec-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .rec-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rec-amount {
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .btn-del {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 2px 4px;
     }
 
     /* 顶部此刻关注卡片 */
@@ -136,7 +316,7 @@
       border-radius: 2px;
     }
 
-    /* 手绘感 SVG 地图容器 */
+    /* 地图容器 */
     .map-card {
       background: var(--bg-card);
       border-radius: 18px;
@@ -347,6 +527,95 @@
       <p>4人自由行 · 2026.11.21 - 11.27 · 开普敦 & 赫曼努斯</p>
     </div>
 
+    <!-- 顶部账单入口按钮 -->
+    <div class="quick-bar">
+      <button class="btn-bill-entry" onclick="toggleBillPanel()">
+        <span>🧾 记账账本 (许 / 杨 / 崔 / 李) · 点此展开/记一笔</span>
+      </button>
+    </div>
+
+    <!-- 账单控制面板 (可收起/展开，实时保存) -->
+    <div class="bill-panel" id="billPanel">
+      <div class="panel-header">
+        <div class="panel-title">💰 旅途支出记账</div>
+        <button class="btn-close" onclick="toggleBillPanel()">✕</button>
+      </div>
+
+      <!-- 四人各自支出统计 -->
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-person">许</div>
+          <div class="stat-val" id="stat-许">0 ZAR</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-person">杨</div>
+          <div class="stat-val" id="stat-杨">0 ZAR</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-person">崔</div>
+          <div class="stat-val" id="stat-崔">0 ZAR</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-person">李</div>
+          <div class="stat-val" id="stat-李">0 ZAR</div>
+        </div>
+      </div>
+
+      <!-- 输入表单 -->
+      <form class="bill-form" onsubmit="addBillRecord(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">付款人</label>
+            <select class="form-select" id="billPayer" required>
+              <option value="许">许</option>
+              <option value="杨">杨</option>
+              <option value="崔">崔</option>
+              <option value="李">李</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">类型</label>
+            <select class="form-select" id="billType" required>
+              <option value="交通🚗">交通 🚗</option>
+              <option value="住宿🏨">住宿 🏨</option>
+              <option value="食物🍜">食物 🍜</option>
+              <option value="其他">其他 ✨</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">时间 (11/DD)</label>
+            <input type="text" class="form-input" id="billDate" placeholder="如 11/22" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">金额</label>
+            <input type="number" step="0.01" class="form-input" id="billAmount" placeholder="0.00" required />
+          </div>
+          <div class="form-group" style="flex: 0.8;">
+            <label class="form-label">币种</label>
+            <select class="form-select" id="billCurrency">
+              <option value="ZAR">ZAR</option>
+              <option value="SAR">SAR</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">备注</label>
+          <input type="text" class="form-input" id="billNote" placeholder="如：Uber接送、海鲜餐厅AA" />
+        </div>
+
+        <button type="submit" class="btn-submit-bill">➕ 保存这笔账单</button>
+      </form>
+
+      <!-- 明细记录列表 -->
+      <div class="bill-records" id="billRecordsContainer" style="margin-top: 14px;">
+        <!-- 动态生成 -->
+      </div>
+    </div>
+
     <!-- 1. 顶部「此刻关注」卡片 -->
     <div class="hero-card">
       <div class="hero-label">此刻关注 · Next Anchor</div>
@@ -407,7 +676,7 @@
       </div>
     </div>
 
-    <!-- 3. 已确认交通与住宿（脱敏纯净版） -->
+    <!-- 3. 已确认交通与住宿 -->
     <div class="section-title">已确认交通与住宿 (4位成人)</div>
     
     <div class="booking-card">
@@ -816,7 +1085,7 @@
   </div>
 
   <script>
-    // 时间节点表（带显式时区偏移量，无论跨时区何处打开均准确无误）
+    // 时间节点表（带显式时区偏移量）
     const scheduleEvents = [
       { name: "✈️ ET0463 航班从吉达起飞", time: new Date("2026-11-20T15:20:00+03:00") },
       { name: "🛬 ET0845 航班降落开普敦", time: new Date("2026-11-21T13:00:00+02:00") },
@@ -868,6 +1137,75 @@
         el.style.display = "none";
       }
     }
+
+    // 记账面板展开/收起
+    function toggleBillPanel() {
+      const panel = document.getElementById('billPanel');
+      panel.classList.toggle('open');
+    }
+
+    // 本地存储记账数据
+    let bills = JSON.parse(localStorage.getItem('trip_bills_data') || '[]');
+
+    function renderBills() {
+      const container = document.getElementById('billRecordsContainer');
+      const stats = { '许': 0, '杨': 0, '崔': 0, '李': 0 };
+
+      if (bills.length === 0) {
+        container.innerHTML = '<div style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 12px 0;">暂无账单记录，点击上方表单记一笔吧～</div>';
+      } else {
+        let html = '';
+        bills.forEach((b, index) => {
+          stats[b.payer] = (stats[b.payer] || 0) + Number(b.amount);
+          html += `
+            <div class="record-item">
+              <div class="rec-left">
+                <span class="rec-tag">${b.payer} · ${b.type} · ${b.amount} ${b.currency}</span>
+                <span class="rec-sub">${b.date} ${b.note ? '· ' + b.note : ''}</span>
+              </div>
+              <div class="rec-right">
+                <button class="btn-del" onclick="deleteBillRecord(${index})" title="删除">🗑️</button>
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      }
+
+      // 更新四人统计
+      ['许', '杨', '崔', '李'].forEach(p => {
+        const el = document.getElementById('stat-' + p);
+        if (el) el.innerText = (stats[p] || 0).toFixed(1) + ' 累计';
+      });
+    }
+
+    function addBillRecord(e) {
+      e.preventDefault();
+      const payer = document.getElementById('billPayer').value;
+      const type = document.getElementById('billType').value;
+      const date = document.getElementById('billDate').value;
+      const amount = parseFloat(document.getElementById('billAmount').value);
+      const currency = document.getElementById('billCurrency').value;
+      const note = document.getElementById('billNote').value.trim();
+
+      if (isNaN(amount) || amount <= 0) return;
+
+      bills.unshift({ payer, type, date, amount, currency, note, id: Date.now() });
+      localStorage.setItem('trip_bills_data', JSON.stringify(bills));
+      
+      document.getElementById('billAmount').value = '';
+      document.getElementById('billNote').value = '';
+      renderBills();
+    }
+
+    function deleteBillRecord(index) {
+      bills.splice(index, 1);
+      localStorage.setItem('trip_bills_data', JSON.stringify(bills));
+      renderBills();
+    }
+
+    // 页面加载时初次渲染
+    renderBills();
   </script>
 </body>
 </html>
