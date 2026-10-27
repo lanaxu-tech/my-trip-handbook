@@ -284,10 +284,6 @@
       font-weight: 700;
       color: #e11d48;
     }
-    .settle-receive {
-      font-weight: 700;
-      color: #059669;
-    }
 
     /* 4人统计小卡 */
     .stats-grid {
@@ -464,7 +460,7 @@
       background: var(--bg-card);
       border-radius: 14px;
       padding: 14px 16px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
       display: flex;
@@ -496,6 +492,7 @@
     .booking-detail {
       font-size: 13px;
       color: var(--text-muted);
+      line-height: 1.6;
     }
     .nav-link {
       display: inline-flex;
@@ -509,7 +506,27 @@
       word-break: break-all;
     }
 
-    /* 逐日行程折叠与时间轴 */
+    /* 转机专属高亮模块 */
+    .layover-box {
+      background: var(--accent-bg);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-left: 4px solid var(--accent);
+    }
+    .layover-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .layover-text {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* 逐日行程板块（一天一板块） */
     .day-container {
       background: var(--bg-card);
       border-radius: 16px;
@@ -649,7 +666,7 @@
     <!-- 页面专属顶头大标题 -->
     <div class="page-main-header">
       <h1>跨越红海去南非抢超市</h1>
-      <p>4人自由行 · 2026.11.21 - 11.27 · 开普敦 & 赫曼努斯</p>
+      <p>4人自由行 · 2026.11.20 - 11.28 · 吉达 ⇌ 开普敦 ⇌ 赫曼努斯</p>
     </div>
 
     <!-- 顶部账单入口按钮 -->
@@ -659,14 +676,13 @@
       </button>
     </div>
 
-    <!-- 账单控制面板 (可收起/展开，实时保存) -->
+    <!-- 账单控制面板 -->
     <div class="bill-panel" id="billPanel">
       <div class="panel-header">
         <div class="panel-title">💰 旅途支出记账 & 分账</div>
         <button class="btn-close" onclick="toggleBillPanel()">✕</button>
       </div>
 
-      <!-- 四人各自支出统计 -->
       <div class="stats-grid">
         <div class="stat-box">
           <div class="stat-person">许</div>
@@ -686,7 +702,6 @@
         </div>
       </div>
 
-      <!-- 输入表单 -->
       <form class="bill-form" onsubmit="addBillRecord(event)">
         <div class="form-row">
           <div class="form-group">
@@ -709,7 +724,6 @@
           </div>
         </div>
 
-        <!-- 涉及对象选择 -->
         <div class="form-group">
           <label class="form-label">涉及对象 (分摊对象)</label>
           <div class="targets-wrapper">
@@ -762,7 +776,6 @@
         <button type="submit" class="btn-submit-bill">➕ 保存这笔账单</button>
       </form>
 
-      <!-- 功能操作栏：下载 Excel & 一键分账 -->
       <div class="bill-action-bar">
         <button class="btn-secondary" onclick="exportBillsToExcel()">
           📥 导出账单 (Excel)
@@ -772,7 +785,6 @@
         </button>
       </div>
 
-      <!-- 一键分账结算方案面板 -->
       <div class="settlement-box" id="settlementBox">
         <div class="settlement-title">
           <span>🤝 AA 结算方案 (单位: SAR)</span>
@@ -786,7 +798,6 @@
         <ul class="settlement-list" id="settlementList"></ul>
       </div>
 
-      <!-- 明细记录列表 -->
       <div class="bill-records" id="billRecordsContainer" style="margin-top: 14px;"></div>
     </div>
 
@@ -821,27 +832,20 @@
         <path d="M 60,30 Q 110,120 90,200 T 130,290" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4,4" />
         <text x="25" y="80" fill="#64748b" font-size="11" font-weight="bold">ATLANTIC OCEAN</text>
         
-        <!-- D1-D3 市区/桌山/半岛 (蓝线) -->
         <path d="M 120,70 L 140,110 L 105,240" fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
-        <!-- D4-D5 专车往返赫曼努斯 (橙线) -->
         <path d="M 120,70 Q 250,120 390,240" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="5,5" stroke-linecap="round"/>
-        <!-- D6-D7 康斯坦提亚酒庄与海之角 (绿线) -->
         <path d="M 115,75 L 145,130" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
 
-        <!-- 节点：开普敦 CBD / Sea Point -->
         <circle cx="120" cy="70" r="7" fill="#0284c7" />
         <text x="132" y="66" fill="currentColor" font-size="12" font-weight="bold">开普敦 (CBD / Sea Point)</text>
         <text x="132" y="80" fill="#64748b" font-size="10">宿 11.21-24 & 11.25-27</text>
 
-        <!-- 节点：桌山 & 坎普斯湾 -->
         <circle cx="140" cy="110" r="5" fill="#0284c7" />
         <text x="152" y="114" fill="currentColor" font-size="10">桌山 & Camps Bay (11.22)</text>
 
-        <!-- 节点：企鹅滩 & 好望角 -->
         <circle cx="105" cy="240" r="5" fill="#0284c7" />
         <text x="117" y="244" fill="currentColor" font-size="10">西蒙镇 & 好望角 (11.23 包车)</text>
 
-        <!-- 节点：赫曼努斯 Hermanus -->
         <circle cx="390" cy="240" r="7" fill="#f97316" />
         <text x="315" y="265" fill="currentColor" font-size="12" font-weight="bold">赫曼努斯 (宿 11.24 接送)</text>
       </svg>
@@ -850,27 +854,101 @@
       </div>
     </div>
 
-    <!-- 3. 已确认交通与住宿 -->
-    <div class="section-title">已确认交通与住宿 (4位成人)</div>
+    <!-- 3. 已确认交通与住宿（含精确航站楼及机场地图链接） -->
+    <div class="section-title">已确认交通与住宿 (精准航站楼与地图)</div>
     
+    <!-- 去程航班卡片 -->
     <div class="booking-card">
       <div class="booking-header">
-        <span class="booking-type">去程航班 · 埃塞俄比亚航空</span>
-        <span class="booking-time">11-20 至 11-21</span>
+        <span class="booking-type">去程第一程 · ET0463</span>
+        <span class="booking-time">2026-11-20 (周五)</span>
       </div>
-      <div class="booking-name">ET0463 (JED 15:20) ➔ 经转 ADD ➔ ET0845 (CPT 13:00)</div>
-      <div class="booking-detail">抵达后 4 人叫一辆 UberXL 前往市区公寓，轻松装载行李。</div>
+      <div class="booking-name">吉达 (JED) ➔ 亚的斯亚贝巴 (ADD)</div>
+      <div class="booking-detail">
+        • 起飞：15:20 | <strong>吉达国际机场 (JED) · 北航站楼 (Terminal N)</strong><br>
+        • 降落：17:50 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+        • 飞行时长：2 小时 30 分钟
+      </div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">
+        📍 吉达机场北航站楼 (JED Terminal N) 地图导航
+      </a>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">
+        📍 亚的斯亚贝巴机场2号航站楼 (ADD Terminal 2) 地图导航
+      </a>
     </div>
 
+    <!-- 去程转机行程专属卡片 -->
+    <div class="layover-box">
+      <div class="layover-title">⏳ 埃塞俄比亚转机行程 · 去程过夜中转</div>
+      <div class="layover-text">
+        <strong>中转机场</strong>：亚的斯亚贝巴博莱国际机场 (ADD) Terminal 2<br>
+        <strong>转机时长</strong>：<strong>13 小时 40 分钟</strong>（11月20日 17:50 抵达 ➔ 11月21日 07:30 起飞）<br>
+        <strong>转机贴士</strong>：行李直挂开普敦。凭下程登机牌在转机柜台可办理过境休整/航司中转酒店休息服务，或在 T2 国际候机区休息（带好长袖外套及随身转换插头）。
+      </div>
+    </div>
+
+    <!-- 去程第二程卡片 -->
     <div class="booking-card">
       <div class="booking-header">
-        <span class="booking-type">回程航班 · 埃塞俄比亚航空</span>
-        <span class="booking-time">11-27 至 11-28</span>
+        <span class="booking-type">去程第二程 · ET0845</span>
+        <span class="booking-time">2026-11-21 (周六)</span>
       </div>
-      <div class="booking-name">ET0846 (CPT 15:10) ➔ 经转 ADD ➔ ET0462 (JED 13:30)</div>
-      <div class="booking-detail">11-27 中午 12:00 前到达机场办退税与行李托运。</div>
+      <div class="booking-name">亚的斯亚贝巴 (ADD) ➔ 开普敦 (CPT)</div>
+      <div class="booking-detail">
+        • 起飞：07:30 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+        • 降落：13:00 | <strong>开普敦国际机场 (CPT) · 国际到达厅 (International Terminal)</strong><br>
+        • 飞行时长：6 小时 30 分钟
+      </div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">
+        📍 开普敦国际机场 (CPT) 地图导航
+      </a>
     </div>
 
+    <!-- 回程第一程卡片 -->
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">回程第一程 · ET0846</span>
+        <span class="booking-time">2026-11-27 (周五)</span>
+      </div>
+      <div class="booking-name">开普敦 (CPT) ➔ 亚的斯亚贝巴 (ADD)</div>
+      <div class="booking-detail">
+        • 起飞：15:10 | <strong>开普敦国际机场 (CPT) · 国际出发厅 (International Terminal)</strong><br>
+        • 降落：22:35 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+        • 飞行时长：6 小时 25 分钟
+      </div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">
+        📍 开普敦国际机场国际出发厅地图导航
+      </a>
+    </div>
+
+    <!-- 回程转机行程专属卡片 -->
+    <div class="layover-box">
+      <div class="layover-title">⏳ 埃塞俄比亚转机行程 · 回程过夜中转</div>
+      <div class="layover-text">
+        <strong>中转机场</strong>：亚的斯亚贝巴博莱国际机场 (ADD) Terminal 2<br>
+        <strong>转机时长</strong>：<strong>12 小时 25 分钟</strong>（11月27日 22:35 抵达 ➔ 11月28日 11:00 起飞）<br>
+        <strong>转机贴士</strong>：行李直挂吉达。深夜抵达后可在 T2 候机区免税店采购埃塞俄比亚高地咖啡豆（耶加雪菲等），或在航司中转休息室休息。
+      </div>
+    </div>
+
+    <!-- 回程第二程卡片 -->
+    <div class="booking-card">
+      <div class="booking-header">
+        <span class="booking-type">回程第二程 · ET0462</span>
+        <span class="booking-time">2026-11-28 (周六)</span>
+      </div>
+      <div class="booking-name">亚的斯亚贝巴 (ADD) ➔ 吉达 (JED)</div>
+      <div class="booking-detail">
+        • 起飞：11:00 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+        • 降落：13:30 | <strong>吉达国际机场 (JED) · 北航站楼 (Terminal N)</strong><br>
+        • 飞行时长：2 小时 30 分钟
+      </div>
+      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">
+        📍 吉达机场北航站楼 (JED Terminal N) 地图导航
+      </a>
+    </div>
+
+    <!-- 住宿 1 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">住宿 · CBD 公寓 (3晚)</span>
@@ -883,6 +961,7 @@
       </a>
     </div>
 
+    <!-- 住宿 2 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">住宿 · 赫曼努斯小木屋 (1晚)</span>
@@ -894,6 +973,7 @@
       </a>
     </div>
 
+    <!-- 住宿 3 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">住宿 · 海之角海景公寓 (2晚)</span>
@@ -906,34 +986,88 @@
       </a>
     </div>
 
-    <!-- 4. 逐日行程 -->
-    <div class="section-title">逐日松弛漫游行程</div>
+    <!-- 4. 逐日松弛漫游行程（精确到每一天，单日独立板块） -->
+    <div class="section-title">逐日松弛漫游行程 (单日专属板块)</div>
 
-    <!-- D1 -->
+    <!-- Day 0 (11月20日) -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d0')">
+        <div class="day-title-group">
+          <h3>2026年11月20日 (周五) · 启程出征</h3>
+          <div class="day-subtitle">吉达起飞 ➔ 抵达亚的斯亚贝巴 ➔ 开启过夜中转</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/King+Abdulaziz+International+Airport+North+Terminal+Jeddah/Addis+Ababa+Bole+International+Airport" target="_blank" onclick="event.stopPropagation();">飞行路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d0">
+        <div class="day-mini-map">动线：吉达国际机场北航站楼 (Terminal N) ➔ 亚的斯亚贝巴机场 (Terminal 2)</div>
+        <div class="timeline-item">
+          <div class="t-time">12:30</div>
+          <div class="t-content">
+            <h4>抵达吉达机场北航站楼 (Terminal N)</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">📍 吉达北航站楼 (Terminal N)</a>
+              埃塞俄比亚航空值机柜台办理登机手续，托运行李（确认行李直挂开普敦 CPT）。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">15:20</div>
+          <div class="t-content">
+            <h4>ET0463 航班起飞离开吉达</h4>
+            <div class="t-desc">飞越红海前往埃塞俄比亚，空中飞行约 2 小时 30 分钟。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">17:50</div>
+          <div class="t-content">
+            <span class="tag tag-warn">过夜中转 13h40m</span>
+            <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
+              走国际中转通道（Transit）。由于中转时长达 13 小时 40 分钟，前往转机柜台确认中转休整安排或在候机区休息。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 1 (11月21日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d1')">
         <div class="day-title-group">
-          <h3>Day 1 · 11月21日 (周六) 抵达开普敦</h3>
-          <div class="day-subtitle">下午入住 · 漫步 V&A Waterfront 码头海滨</div>
+          <h3>2026年11月21日 (周六) · 抵达开普敦</h3>
+          <div class="day-subtitle">下午入住 CBD 公寓 · 漫步 V&A Waterfront 码头海滨</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/Cape+Town+International+Airport/3+St+Georges+Mall/Victoria+Wharf+Shopping+Centre/Knysna+Oyster+Company+-+V%26A+Waterfront" target="_blank" onclick="event.stopPropagation();">全天路线</a>
         </div>
       </div>
       <div class="day-content" id="d1">
-        <div class="day-mini-map">动线：CPT 机场 ➔ CBD 公寓入住 ➔ 打车至 V&A Waterfront 逛街看海吃晚餐</div>
+        <div class="day-mini-map">动线：ADD T2 飞往 CPT ➔ CBD 公寓入住 ➔ 打车至 V&A Waterfront 逛街看海吃晚餐</div>
+        <div class="timeline-item">
+          <div class="t-time">07:30</div>
+          <div class="t-content">
+            <h4>ET0845 航班起飞离开亚的斯亚贝巴</h4>
+            <div class="t-desc">飞往南非开普敦，飞行时长约 6 小时 30 分钟。</div>
+          </div>
+        </div>
         <div class="timeline-item">
           <div class="t-time">13:00</div>
           <div class="t-content">
-            <h4>落地开普敦机场</h4>
-            <div class="t-desc">取行李，航站楼开通本地网络，直接呼叫 UberXL 前往市中心公寓（车程约 25 分钟）。</div>
+            <h4>落地开普敦国际机场 (CPT) 国际到达厅</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">📍 开普敦国际机场</a>
+              顺利入境并提取直挂行李。在大厅办好本地网络，4 人呼叫一辆 UberXL 前往市中心（车程约 25 分钟）。
+            </div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="t-time">15:00</div>
           <div class="t-content">
             <h4>入住 CBD 两居室公寓</h4>
-            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">📍 3 Saint Georges Mall</a> 安顿行李，稍微休息。</div>
+            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">📍 3 Saint Georges Mall</a> 安顿行李，稍微休息冲凉。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -941,19 +1075,19 @@
           <div class="t-content">
             <h4>V&A Waterfront 海滨漫步与生蚝晚餐</h4>
             <div class="t-desc">
-              打车 10 分钟至 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Victoria+Wharf+Shopping+Centre" target="_blank">📍 Victoria Wharf Shopping Centre</a>。吹海风看夕阳下的港湾，在 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Knysna+Oyster+Company+V%26A+Waterfront" target="_blank">📍 Knysna Oyster Company</a> 享用鲜活生蚝与海鲜意式炖饭。
+              打车 10 分钟至 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Victoria+Wharf+Shopping+Centre" target="_blank">📍 Victoria Wharf Shopping Centre</a>。吹海风看夕阳下的港湾游艇，在 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Knysna+Oyster+Company+V%26A+Waterfront" target="_blank">📍 Knysna Oyster Company</a> 享用鲜活生蚝与海鲜意式炖饭。
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- D2 -->
+    <!-- Day 2 (11月22日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d2')">
         <div class="day-title-group">
-          <h3>Day 2 · 11月22日 (周日) 桌山 + Camps Bay</h3>
-          <div class="day-subtitle">云海缆车 · 网红椅子 · 绝美日落与牛排</div>
+          <h3>2026年11月22日 (周日) · 桌山 + Camps Bay</h3>
+          <div class="day-subtitle">云海缆车 · 网红黄椅子 · 绝美日落与 Bo-Vine 牛排</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/Table+Mountain+Aerial+Cableway/Camps+Bay+Beach/Bo-Vine+Wine+%26+Grill+House+Camps+Bay" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -968,7 +1102,7 @@
             <h4>桌山缆车 (Table Mountain)</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Table+Mountain+Aerial+Cableway" target="_blank">📍 Table Mountain Aerial Cableway</a> 
-              趁上午风力小登顶，360 度旋转缆车站，俯瞰开普敦全城与大西洋云海。
+              上午风力最小登顶，乘 360 度旋转缆车，俯瞰开普敦全城与大西洋壮丽云海。
             </div>
           </div>
         </div>
@@ -1002,12 +1136,12 @@
       </div>
     </div>
 
-    <!-- D3 -->
+    <!-- Day 3 (11月23日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d3')">
         <div class="day-title-group">
-          <h3>Day 3 · 11月23日 (周一) 开普半岛一日游</h3>
-          <div class="day-subtitle">预约包车 · 企鹅滩 · 西蒙小镇 · 好望角</div>
+          <h3>2026年11月23日 (周一) · 开普半岛一日游</h3>
+          <div class="day-subtitle">预约商务包车 · 企鹅滩 · 西蒙小镇 · 好望角</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/Boulders+Beach/Simon's+Town/Cape+Point/Cape+of+Good+Hope" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -1055,12 +1189,12 @@
       </div>
     </div>
 
-    <!-- D4 -->
+    <!-- Day 4 (11月24日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d4')">
         <div class="day-title-group">
-          <h3>Day 4 · 11月24日 (周二) 开普敦 ➔ 赫曼努斯</h3>
-          <div class="day-subtitle">专车接送 · 沿海步道 · 老港口 · 悬崖岩洞餐厅</div>
+          <h3>2026年11月24日 (周二) · 开普敦 ➔ 赫曼努斯</h3>
+          <div class="day-subtitle">预约专车接送 · 沿海步道 · 老港口 · 悬崖岩洞餐厅</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/6+Stemmet+Lodge+Hermanus/Old+Harbour+Museum+Hermanus/Bientang's+Cave+Restaurant+%26+Wine+Bar" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -1071,7 +1205,7 @@
         <div class="timeline-item">
           <div class="t-time">10:00</div>
           <div class="t-content">
-            <span class="tag tag-warn">专车接送·4人同行舒适省心</span>
+            <span class="tag tag-warn">专车接送·4人舒适省心</span>
             <h4>CBD 公寓退房，专车启程</h4>
             <div class="t-desc">请师傅走 R44 Clarence Drive 景观大道，中途可在观景台停车眺望海景。车程约 2 小时。</div>
           </div>
@@ -1103,12 +1237,12 @@
       </div>
     </div>
 
-    <!-- D5 -->
+    <!-- Day 5 (11月25日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d5')">
         <div class="day-title-group">
-          <h3>Day 5 · 11月25日 (周三) 赫曼努斯 ➔ 海之角</h3>
-          <div class="day-subtitle">出海观鲸 · 专车返程 · 入住海景公寓</div>
+          <h3>2026年11月25日 (周三) · 赫曼努斯 ➔ 海之角</h3>
+          <div class="day-subtitle">出海观鲸/海滨漫步 · 专车返程 · 入住 Sea Point 公寓</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/6+Stemmet+Lodge+Hermanus/Pear+Tree+Hermanus/Adelphi+Centre+Sea+Point" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -1150,11 +1284,11 @@
       </div>
     </div>
 
-    <!-- D6 -->
+    <!-- Day 6 (11月26日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d6')">
         <div class="day-title-group">
-          <h3>Day 6 · 11月26日 (周四) 历史名庄与极品鲜味</h3>
+          <h3>2026年11月26日 (周四) · 历史名庄与极品鲜味</h3>
           <div class="day-subtitle">免去 Safari 颠簸 · 康斯坦提亚酒庄 · 华都鲜鲍大龙虾 · 慢淘古玩</div>
         </div>
         <div class="day-actions">
@@ -1196,19 +1330,19 @@
       </div>
     </div>
 
-    <!-- D7 -->
+    <!-- Day 7 (11月27日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d7')">
         <div class="day-title-group">
-          <h3>Day 7 · 11月27日 (周五) 告别开普敦</h3>
-          <div class="day-subtitle">顶级手冲咖啡 · 海滨退房 · 满载而归</div>
+          <h3>2026年11月27日 (周五) · 告别开普敦</h3>
+          <div class="day-subtitle">顶级手冲咖啡 · 海滨退房 · 起飞离开开普敦</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/Adelphi+Centre+Sea+Point/MIKRO+COFFEE+CO/Cape+Town+International+Airport" target="_blank" onclick="event.stopPropagation();">全天路线</a>
         </div>
       </div>
       <div class="day-content" id="d7">
-        <div class="day-mini-map">动线：Sea Point ➔ MIKRO 咖啡 ➔ 退房 ➔ UberXL 送往机场</div>
+        <div class="day-mini-map">动线：Sea Point ➔ MIKRO 咖啡 ➔ 退房 ➔ 送往 CPT 国际机场 ➔ 飞往 ADD</div>
         <div class="timeline-item">
           <div class="t-time">09:00</div>
           <div class="t-content">
@@ -1222,15 +1356,62 @@
         <div class="timeline-item">
           <div class="t-time">10:00</div>
           <div class="t-content">
-            <h4>退房并预约 UberXL 前往机场</h4>
-            <div class="t-desc">行李全部装车。建议 11:45 左右抵达机场，留出充足时间退税并托运行李。</div>
+            <h4>Sea Point 退房并预约 UberXL 前往机场</h4>
+            <div class="t-desc">行李全部装车。建议 11:45 左右抵达开普敦国际机场国际出发厅，留出充足时间退税并托运行李。</div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="t-time">15:10</div>
           <div class="t-content">
             <h4>ET0846 航班起飞离开开普敦</h4>
-            <div class="t-desc">经转 ADD 亚的斯亚贝巴，返回吉达。</div>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">📍 开普敦国际机场</a>
+              起飞离开南非，飞行时长约 6 小时 25 分钟。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">22:35</div>
+          <div class="t-content">
+            <span class="tag tag-warn">回程过夜中转 12h25m</span>
+            <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
+              进入国际候机厅，开始过夜中转休整。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 8 (11月28日) -->
+    <div class="day-container">
+      <div class="day-header" onclick="toggleDay('d8')">
+        <div class="day-title-group">
+          <h3>2026年11月28日 (周六) · 平安返抵吉达</h3>
+          <div class="day-subtitle">亚的斯亚贝巴起飞 ➔ 抵达吉达国际机场北航站楼</div>
+        </div>
+        <div class="day-actions">
+          <a class="btn-route" href="https://www.google.com/maps/dir/Addis+Ababa+Bole+International+Airport/King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank" onclick="event.stopPropagation();">飞行路线</a>
+        </div>
+      </div>
+      <div class="day-content" id="d8">
+        <div class="day-mini-map">动线：ADD 2号航站楼 (Terminal 2) ➔ 吉达国际机场北航站楼 (Terminal N)</div>
+        <div class="timeline-item">
+          <div class="t-time">11:00</div>
+          <div class="t-content">
+            <h4>ET0462 航班起飞离开亚的斯亚贝巴</h4>
+            <div class="t-desc">飞往沙特阿拉伯吉达，飞行时长约 2 小时 30 分钟。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-time">13:30</div>
+          <div class="t-content">
+            <h4>降落吉达国际机场 (JED) · 北航站楼 (Terminal N)</h4>
+            <div class="t-desc">
+              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">📍 吉达机场北航站楼 (JED Terminal N)</a>
+              顺利通关并提取托运行李，精彩的南非之旅圆满收官！
+            </div>
           </div>
         </div>
       </div>
@@ -1261,8 +1442,9 @@
   <script>
     // 时间节点表（带显式时区偏移量）
     const scheduleEvents = [
-      { name: "✈️ ET0463 航班从吉达起飞", time: new Date("2026-11-20T15:20:00+03:00") },
-      { name: "🛬 ET0845 航班降落开普敦", time: new Date("2026-11-21T13:00:00+02:00") },
+      { name: "✈️ ET0463 航班从吉达起飞 (Terminal N)", time: new Date("2026-11-20T15:20:00+03:00") },
+      { name: "⏳ 亚的斯亚贝巴机场过夜中转 (13h40m)", time: new Date("2026-11-20T17:50:00+03:00") },
+      { name: "🛬 ET0845 航班降落开普敦 (CPT)", time: new Date("2026-11-21T13:00:00+02:00") },
       { name: "🏡 入住开普敦 CBD 公寓", time: new Date("2026-11-21T15:00:00+02:00") },
       { name: "🚠 登桌山看大西洋云海", time: new Date("2026-11-22T09:00:00+02:00") },
       { name: "🐧 启程半岛一日游 (企鹅滩+好望角)", time: new Date("2026-11-23T09:00:00+02:00") },
@@ -1270,7 +1452,9 @@
       { name: "🌊 赫曼努斯出海观鲸巡游", time: new Date("2026-11-25T09:00:00+02:00") },
       { name: "🏡 专车返回海之角 Sea Point 公寓", time: new Date("2026-11-25T16:00:00+02:00") },
       { name: "🍷 探访康斯坦提亚酒庄与华都鲜鲍", time: new Date("2026-11-26T10:00:00+02:00") },
-      { name: "🛫 ET0846 航班起飞告别开普敦", time: new Date("2026-11-27T15:10:00+02:00") }
+      { name: "🛫 ET0846 航班起飞离开开普敦", time: new Date("2026-11-27T15:10:00+02:00") },
+      { name: "⏳ 亚的斯亚贝巴机场过夜中转 (12h25m)", time: new Date("2026-11-27T22:35:00+03:00") },
+      { name: "🛬 平安抵达吉达国际机场北航站楼", time: new Date("2026-11-28T13:30:00+03:00") }
     ];
 
     function updateCountdown() {
@@ -1405,7 +1589,6 @@
       document.getElementById('billAmount').value = '';
       document.getElementById('billNote').value = '';
       renderBills();
-      // 如果当前结算面板展开，同步重新计算
       if (document.getElementById('settlementBox').classList.contains('show')) {
         calculateSettlement();
       }
@@ -1420,7 +1603,7 @@
       }
     }
 
-    // 1. 导出账单为 Excel (CSV 格式，带 UTF-8 BOM，Excel 双击直接打开不乱码)
+    // 1. 导出账单为 Excel (CSV 格式)
     function exportBillsToExcel() {
       if (bills.length === 0) {
         alert('当前没有可导出的账单记录！');
@@ -1467,19 +1650,15 @@
       const rate = parseFloat(document.getElementById('zarToSarRate').value) || 0.21;
       const members = ['许', '杨', '崔', '李'];
       
-      // 记录每个人换算为 SAR 后的净值：净值 = 垫付总额 - 应承担总额
       const netSAR = { '许': 0, '杨': 0, '崔': 0, '李': 0 };
       let totalSAR = 0;
 
       bills.forEach(b => {
-        // 汇率换算为 SAR
         const amtSAR = (b.currency === 'ZAR') ? (b.amount * rate) : b.amount;
         totalSAR += amtSAR;
 
-        // 垫付人加上总额
         netSAR[b.payer] = (netSAR[b.payer] || 0) + amtSAR;
 
-        // 涉及对象平摊扣减
         const targets = (b.targets && b.targets.length > 0) ? b.targets : members;
         const splitShare = amtSAR / targets.length;
         targets.forEach(t => {
@@ -1490,20 +1669,18 @@
       document.getElementById('settlementSummaryText').innerText = 
         `总计消费折合约 ${totalSAR.toFixed(2)} SAR（汇率 1 ZAR = ${rate} SAR）。结算方案如下：`;
 
-      // 区分债务人 (欠钱需转出) 与 债权人 (垫付超额需收款)
       const debtors = [];
       const creditors = [];
 
       members.forEach(m => {
         const bal = Math.round(netSAR[m] * 100) / 100;
         if (bal < -0.01) {
-          debtors.push({ name: m, amount: -bal }); // 需支付
+          debtors.push({ name: m, amount: -bal });
         } else if (bal > 0.01) {
-          creditors.push({ name: m, amount: bal });  // 需接收
+          creditors.push({ name: m, amount: bal });
         }
       });
 
-      // 贪心对冲匹配最小转账次数
       const transfers = [];
       let i = 0, j = 0;
 
@@ -1540,7 +1717,6 @@
       }
     }
 
-    // 页面加载初次渲染
     renderBills();
   </script>
 </body>
