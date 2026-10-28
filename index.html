@@ -17,6 +17,8 @@
       --tag-warn-text: #b45309;
       --tag-book-bg: #fee2e2;
       --tag-book-text: #b91c1c;
+      --tag-danger-bg: #ffe4e6;
+      --tag-danger-text: #be123c;
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     }
 
@@ -33,6 +35,8 @@
         --tag-warn-text: #fde68a;
         --tag-book-bg: #7f1d1d;
         --tag-book-text: #fecaca;
+        --tag-danger-bg: #881337;
+        --tag-danger-text: #fecdd3;
         --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
       }
     }
@@ -53,7 +57,6 @@
       padding: 16px;
     }
 
-    /* 顶部大标题 */
     .page-main-header {
       text-align: center;
       margin: 12px 0 16px;
@@ -70,7 +73,6 @@
       margin-top: 4px;
     }
 
-    /* 顶部记账快捷入口按钮 */
     .quick-bar {
       display: flex;
       gap: 10px;
@@ -96,7 +98,6 @@
       transform: scale(0.98);
     }
 
-    /* 账单卡片 */
     .bill-panel {
       background: var(--bg-card);
       border-radius: 18px;
@@ -128,7 +129,6 @@
       cursor: pointer;
     }
 
-    /* 记账表单 */
     .bill-form {
       display: flex;
       flex-direction: column;
@@ -164,7 +164,6 @@
       border-color: var(--accent);
     }
 
-    /* 涉及对象多选标签样式 */
     .targets-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -200,7 +199,6 @@
       cursor: pointer;
     }
 
-    /* 功能按钮行：导出与一键分账 */
     .bill-action-bar {
       display: flex;
       gap: 8px;
@@ -227,7 +225,6 @@
       border-color: #059669;
     }
 
-    /* 结算结果面板 */
     .settlement-box {
       margin-top: 14px;
       padding: 14px;
@@ -285,7 +282,6 @@
       color: #e11d48;
     }
 
-    /* 4人统计小卡 */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -311,7 +307,6 @@
       font-weight: 600;
     }
 
-    /* 账单历史明细列表 */
     .bill-records {
       border-top: 1px dashed var(--border-color);
       padding-top: 12px;
@@ -371,7 +366,6 @@
       padding: 2px 4px;
     }
 
-    /* 顶部此刻关注卡片 */
     .hero-card {
       background: var(--bg-card);
       border-radius: 18px;
@@ -419,7 +413,6 @@
       margin-top: 4px;
     }
 
-    /* 分区标题 */
     .section-title {
       font-size: 18px;
       font-weight: 700;
@@ -437,7 +430,6 @@
       border-radius: 2px;
     }
 
-    /* 地图容器 */
     .map-card {
       background: var(--bg-card);
       border-radius: 18px;
@@ -455,7 +447,6 @@
       background: var(--bg-primary);
     }
 
-    /* 预订与凭证卡片 */
     .booking-card {
       background: var(--bg-card);
       border-radius: 14px;
@@ -506,27 +497,54 @@
       word-break: break-all;
     }
 
-    /* 转机专属高亮模块 */
+    /* 埃塞俄比亚转机专属板块强化（含免费中转酒店全流程） */
     .layover-box {
-      background: var(--accent-bg);
-      border-radius: 14px;
-      padding: 14px 16px;
-      margin-bottom: 14px;
-      border-left: 4px solid var(--accent);
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
+      border-left: 5px solid #0284c7;
+    }
+    .layover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
     }
     .layover-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .layover-text {
-      font-size: 13px;
+      font-size: 15px;
+      font-weight: 800;
       color: var(--text-main);
+    }
+    .layover-badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--tag-danger-bg);
+      color: var(--tag-danger-text);
+      font-weight: 700;
+    }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
       line-height: 1.6;
     }
+    .tips-highlight {
+      background: var(--bg-primary);
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+    .tips-highlight strong {
+      color: var(--text-main);
+    }
 
-    /* 逐日行程板块（一天一板块） */
+    /* 逐日行程板块 */
     .day-container {
       background: var(--bg-card);
       border-radius: 16px;
@@ -616,8 +634,8 @@
     }
     .tag-book { background: var(--tag-book-bg); color: var(--tag-book-text); }
     .tag-warn { background: var(--tag-warn-bg); color: var(--tag-warn-text); }
+    .tag-danger { background: var(--tag-danger-bg); color: var(--tag-danger-text); }
 
-    /* 待办清单 */
     .todo-card {
       background: var(--bg-card);
       border-radius: 14px;
@@ -645,7 +663,6 @@
       flex-shrink: 0;
     }
 
-    /* 贴士列表 */
     .tips-card {
       background: var(--bg-card);
       border-radius: 14px;
@@ -663,7 +680,6 @@
 
   <div class="container">
 
-    <!-- 页面专属顶头大标题 -->
     <div class="page-main-header">
       <h1>跨越红海去南非抢超市</h1>
       <p>4人自由行 · 2026.11.20 - 11.28 · 吉达 ⇌ 开普敦 ⇌ 赫曼努斯</p>
@@ -857,7 +873,7 @@
     <!-- 3. 已确认交通与住宿（含精确航站楼及机场地图链接） -->
     <div class="section-title">已确认交通与住宿 (精准航站楼与地图)</div>
     
-    <!-- 去程航班卡片 -->
+    <!-- 航班 1 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">去程第一程 · ET0463</span>
@@ -877,17 +893,56 @@
       </a>
     </div>
 
-    <!-- 去程转机行程专属卡片 -->
+    <!-- 埃塞俄比亚转机专属核心避坑与免费中转酒店申领板块 -->
     <div class="layover-box">
-      <div class="layover-title">⏳ 埃塞俄比亚转机行程 · 去程过夜中转</div>
-      <div class="layover-text">
-        <strong>中转机场</strong>：亚的斯亚贝巴博莱国际机场 (ADD) Terminal 2<br>
-        <strong>转机时长</strong>：<strong>13 小时 40 分钟</strong>（11月20日 17:50 抵达 ➔ 11月21日 07:30 起飞）<br>
-        <strong>转机贴士</strong>：行李直挂开普敦。凭下程登机牌在转机柜台可办理过境休整/航司中转酒店休息服务，或在 T2 国际候机区休息（带好长袖外套及随身转换插头）。
+      <div class="layover-header">
+        <div>
+          <div class="layover-title">🇪🇹 埃塞俄比亚转机：免费中转酒店申请与避坑攻略</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
+            结合小红书真实亲测整理 · 
+            <a href="https://www.xiaohongshu.com/explore/6ab7c432000000000a024316" target="_blank" style="color:var(--accent); font-weight:700;">免费酒店攻略原帖 ↗</a> · 
+            <a href="https://www.xiaohongshu.com/explore/6ac6d7f5000000001c02e611" target="_blank" style="color:var(--accent); font-weight:700;">机场避坑原帖 ↗</a>
+          </div>
+        </div>
+        <span class="layover-badge">🚨 关键必读</span>
+      </div>
+
+      <div class="tips-grid">
+        <!-- 免费酒店实操 -->
+        <div class="tips-highlight" style="border-left: 3px solid #0284c7;">
+          <strong style="color: #0284c7;">🏨 埃航免费中转酒店申请与搭车步骤（中转>8小时免费）：</strong><br>
+          1. <strong>在出发机场（吉达 JED / 开普敦 CPT）值机时</strong>：务必主动向地勤索取<strong>纸质打印版 Hotel Voucher（酒店凭证）</strong>！4人一起递护照行程单，确保分在同一家酒店。<br>
+          2. <strong>落地 ADD 机场后</strong>：沿【Arrivals】一直走到【Passport Control】排队，核验通过后从<strong>蓝色小门</strong>走出，下楼过一次安检即到 Transit Hotel 接驳班车区（无需办繁琐出境海关）。<br>
+          3. <strong>上车入住</strong>：把 Voucher 给现场工作人员，工作人员会指引坐上对应酒店的免费班车前往入住。<br>
+          4. <strong>叫醒与返程</strong>：通常含免费早/晚餐。入住时向前台确认次日送机班车时间，出发前 1 小时酒店有叫醒服务。
+        </div>
+
+        <!-- 黄本硬核预警 -->
+        <div class="tips-highlight" style="border-left: 3px solid #be123c;">
+          <strong style="color: #be123c;">⚠️ 硬性规定：必须随身带实体「黄本」！</strong><br>
+          在埃塞俄比亚转机时长超过 12 小时（本次去程长达 13h40m），进入南非及在 ADD 值机时<strong>被严格要求出示黄热病疫苗证书（黄本）</strong>！4 位同行人必须提前接种并随身携带纸质黄本，查验非常较真。
+        </div>
+
+        <!-- 精确时间锚点 -->
+        <div class="tips-highlight">
+          <strong>⏰ 本次行程具体出发时间锚点（起码预留 3.5 小时）：</strong><br>
+          • <strong>去程（11月21日 ET0845，07:30起飞）</strong>：必须在 <strong>04:00</strong> 离开中转酒店前往航站楼，<strong>04:30</strong> 到达 T2 开始排 1 楼首道预安检（排队看护照+机票）。<br>
+          • <strong>回程（11月28日 ET0462，11:00起飞）</strong>：白天易遇塞车，必须在 <strong>07:30</strong> 从中转酒店启动出发流程，<strong>08:00</strong> 到达大厅排队。
+        </div>
+
+        <!-- 卫生与安检避坑 -->
+        <div class="tips-highlight">
+          <strong>🧦 卫生与随身装备避坑：</strong><br>
+          • <strong>穿鞋袜 + 备一次性袜子</strong>：安检必须脱鞋，所有人光脚踩地。备 2 双一次性袜子，安检后直接扔掉换新袜！<br>
+          • <strong>随身口罩</strong>：人流极大且体味/香水味浓重，务必随身揣好厚口罩。<br>
+          • <strong>带厚外套/保暖毯</strong>：候机大厅空调极冷，过夜转机务必穿暖。<br>
+          • <strong>保温杯</strong>：机场有直饮热水机，带保温杯可随时喝热水或泡面。<br>
+          • <strong>安检细节</strong>：手表均需单独取下过机；补水喷雾尽量不带；若买咖啡粉伴手礼建议托运。
+        </div>
       </div>
     </div>
 
-    <!-- 去程第二程卡片 -->
+    <!-- 航班 2 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">去程第二程 · ET0845</span>
@@ -904,7 +959,7 @@
       </a>
     </div>
 
-    <!-- 回程第一程卡片 -->
+    <!-- 航班 3 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">回程第一程 · ET0846</span>
@@ -921,17 +976,7 @@
       </a>
     </div>
 
-    <!-- 回程转机行程专属卡片 -->
-    <div class="layover-box">
-      <div class="layover-title">⏳ 埃塞俄比亚转机行程 · 回程过夜中转</div>
-      <div class="layover-text">
-        <strong>中转机场</strong>：亚的斯亚贝巴博莱国际机场 (ADD) Terminal 2<br>
-        <strong>转机时长</strong>：<strong>12 小时 25 分钟</strong>（11月27日 22:35 抵达 ➔ 11月28日 11:00 起飞）<br>
-        <strong>转机贴士</strong>：行李直挂吉达。深夜抵达后可在 T2 候机区免税店采购埃塞俄比亚高地咖啡豆（耶加雪菲等），或在航司中转休息室休息。
-      </div>
-    </div>
-
-    <!-- 回程第二程卡片 -->
+    <!-- 航班 4 -->
     <div class="booking-card">
       <div class="booking-header">
         <span class="booking-type">回程第二程 · ET0462</span>
@@ -986,7 +1031,7 @@
       </a>
     </div>
 
-    <!-- 4. 逐日松弛漫游行程（精确到每一天，单日独立板块） -->
+    <!-- 4. 逐日松弛漫游行程 -->
     <div class="section-title">逐日松弛漫游行程 (单日专属板块)</div>
 
     <!-- Day 0 (11月20日) -->
@@ -994,21 +1039,22 @@
       <div class="day-header" onclick="toggleDay('d0')">
         <div class="day-title-group">
           <h3>2026年11月20日 (周五) · 启程出征</h3>
-          <div class="day-subtitle">吉达起飞 ➔ 抵达亚的斯亚贝巴 ➔ 开启过夜中转</div>
+          <div class="day-subtitle">吉达起飞 ➔ 抵达亚的斯亚贝巴 ➔ 入住中转免费酒店</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/King+Abdulaziz+International+Airport+North+Terminal+Jeddah/Addis+Ababa+Bole+International+Airport" target="_blank" onclick="event.stopPropagation();">飞行路线</a>
         </div>
       </div>
       <div class="day-content" id="d0">
-        <div class="day-mini-map">动线：吉达国际机场北航站楼 (Terminal N) ➔ 亚的斯亚贝巴机场 (Terminal 2)</div>
+        <div class="day-mini-map">动线：吉达国际机场北航站楼 (Terminal N) ➔ 亚的斯亚贝巴机场 (Terminal 2) ➔ 乘班车至中转酒店</div>
         <div class="timeline-item">
           <div class="t-time">12:30</div>
           <div class="t-content">
+            <span class="tag tag-danger">必须领取纸质 Voucher</span>
             <h4>抵达吉达机场北航站楼 (Terminal N)</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">📍 吉达北航站楼 (Terminal N)</a>
-              埃塞俄比亚航空值机柜台办理登机手续，托运行李（确认行李直挂开普敦 CPT）。
+              埃塞俄比亚航空值机柜台办理登机手续。<strong>向地勤出示4人机票，现场索取打印好的纸质 Hotel Voucher（中转酒店凭证）</strong>，确认行李直挂开普敦。
             </div>
           </div>
         </div>
@@ -1022,11 +1068,11 @@
         <div class="timeline-item">
           <div class="t-time">17:50</div>
           <div class="t-content">
-            <span class="tag tag-warn">过夜中转 13h40m</span>
+            <span class="tag tag-warn">中转 13h40m · 入住免费酒店</span>
             <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
-              走国际中转通道（Transit）。由于中转时长达 13 小时 40 分钟，前往转机柜台确认中转休整安排或在候机区休息。
+              沿 Arrivals 走至 Passport Control 排队，查验后从<strong>蓝色小门</strong>走出，下楼过安检到达 Transit 接驳车区域，凭 Voucher 乘班车前往航司免费中转酒店入住休整。
             </div>
           </div>
         </div>
@@ -1038,7 +1084,7 @@
       <div class="day-header" onclick="toggleDay('d1')">
         <div class="day-title-group">
           <h3>2026年11月21日 (周六) · 抵达开普敦</h3>
-          <div class="day-subtitle">下午入住 CBD 公寓 · 漫步 V&A Waterfront 码头海滨</div>
+          <div class="day-subtitle">早 04:00 出发安检 ➔ 飞抵开普敦 ➔ 入住 CBD 公寓 ➔ 漫步 V&A 码头</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/Cape+Town+International+Airport/3+St+Georges+Mall/Victoria+Wharf+Shopping+Centre/Knysna+Oyster+Company+-+V%26A+Waterfront" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -1047,10 +1093,18 @@
       <div class="day-content" id="d1">
         <div class="day-mini-map">动线：ADD T2 飞往 CPT ➔ CBD 公寓入住 ➔ 打车至 V&A Waterfront 逛街看海吃晚餐</div>
         <div class="timeline-item">
+          <div class="t-time">04:00</div>
+          <div class="t-content">
+            <span class="tag tag-danger">严禁迟到·必须出发</span>
+            <h4>中转酒店退房 / 乘班车前往 T2 航站楼</h4>
+            <div class="t-desc">起飞前 3.5 小时启动出发！在 1 楼首道预安检排队看护照机票。备好一次性袜子与口罩，<strong>随身备好黄本</strong>随时准备出示。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
           <div class="t-time">07:30</div>
           <div class="t-content">
             <h4>ET0845 航班起飞离开亚的斯亚贝巴</h4>
-            <div class="t-desc">飞往南非开普敦，飞行时长约 6 小时 30 分钟。</div>
+            <div class="t-desc">飞往南非开普敦，空中飞行约 6 小时 30 分钟。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1102,7 +1156,7 @@
             <h4>桌山缆车 (Table Mountain)</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Table+Mountain+Aerial+Cableway" target="_blank">📍 Table Mountain Aerial Cableway</a> 
-              上午风力最小登顶，乘 360 度旋转缆车，俯瞰开普敦全城与大西洋壮丽云海。
+              趁上午风力最小登顶，乘 360 度旋转缆车，俯瞰开普敦全城与大西洋壮丽云海。
             </div>
           </div>
         </div>
@@ -1335,14 +1389,14 @@
       <div class="day-header" onclick="toggleDay('d7')">
         <div class="day-title-group">
           <h3>2026年11月27日 (周五) · 告别开普敦</h3>
-          <div class="day-subtitle">顶级手冲咖啡 · 海滨退房 · 起飞离开开普敦</div>
+          <div class="day-subtitle">顶级手冲咖啡 · 海滨退房 · 起飞离开开普敦 ➔ 抵达 ADD 入住免费酒店</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/Adelphi+Centre+Sea+Point/MIKRO+COFFEE+CO/Cape+Town+International+Airport" target="_blank" onclick="event.stopPropagation();">全天路线</a>
         </div>
       </div>
       <div class="day-content" id="d7">
-        <div class="day-mini-map">动线：Sea Point ➔ MIKRO 咖啡 ➔ 退房 ➔ 送往 CPT 国际机场 ➔ 飞往 ADD</div>
+        <div class="day-mini-map">动线：Sea Point ➔ MIKRO 咖啡 ➔ 退房 ➔ 送往 CPT 国际机场 ➔ 飞往 ADD ➔ 乘班车入住中转酒店</div>
         <div class="timeline-item">
           <div class="t-time">09:00</div>
           <div class="t-content">
@@ -1361,23 +1415,33 @@
           </div>
         </div>
         <div class="timeline-item">
+          <div class="t-time">12:30</div>
+          <div class="t-content">
+            <span class="tag tag-danger">必须领纸质 Voucher</span>
+            <h4>CPT 机场值机 · 索取回程中转酒店凭证</h4>
+            <div class="t-desc">
+              办理 ET0846 值机托运时，<strong>向地勤索取亚的斯亚贝巴过夜的免费中转酒店纸质 Voucher</strong>，确认行李直挂吉达。
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
           <div class="t-time">15:10</div>
           <div class="t-content">
             <h4>ET0846 航班起飞离开开普敦</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">📍 开普敦国际机场</a>
-              起飞离开南非，飞行时长约 6 小时 25 分钟。
+              起飞离开南非，空中飞行约 6 小时 25 分钟。
             </div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="t-time">22:35</div>
           <div class="t-content">
-            <span class="tag tag-warn">回程过夜中转 12h25m</span>
+            <span class="tag tag-warn">回程中转 12h25m · 入住酒店</span>
             <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
-              进入国际候机厅，开始过夜中转休整。
+              沿通道排队过核验，出蓝色小门下楼，凭下午在 CPT 领到的 Voucher 搭乘班车入住中转酒店休息。
             </div>
           </div>
         </div>
@@ -1389,14 +1453,22 @@
       <div class="day-header" onclick="toggleDay('d8')">
         <div class="day-title-group">
           <h3>2026年11月28日 (周六) · 平安返抵吉达</h3>
-          <div class="day-subtitle">亚的斯亚贝巴起飞 ➔ 抵达吉达国际机场北航站楼</div>
+          <div class="day-subtitle">早 07:30 启动安检 ➔ 亚的斯亚贝巴起飞 ➔ 抵达吉达国际机场北航站楼</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/Addis+Ababa+Bole+International+Airport/King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank" onclick="event.stopPropagation();">飞行路线</a>
         </div>
       </div>
       <div class="day-content" id="d8">
-        <div class="day-mini-map">动线：ADD 2号航站楼 (Terminal 2) ➔ 吉达国际机场北航站楼 (Terminal N)</div>
+        <div class="day-mini-map">动线：中转酒店班车 ➔ ADD 2号航站楼 (Terminal 2) ➔ 吉达国际机场北航站楼 (Terminal N)</div>
+        <div class="timeline-item">
+          <div class="t-time">07:30</div>
+          <div class="t-content">
+            <span class="tag tag-danger">白天塞车高峰·提前3.5h</span>
+            <h4>启动出发流程 / 乘班车前往 T2 航站楼</h4>
+            <div class="t-desc">白天机场道路与大厅人流量急剧增加，务必提前 3.5 小时出发。脱鞋脱外套排队过检。进免税区可买埃塞高地咖啡豆。</div>
+          </div>
+        </div>
         <div class="timeline-item">
           <div class="t-time">11:00</div>
           <div class="t-content">
@@ -1421,6 +1493,9 @@
     <div class="section-title">行前待办备忘清单 (改动请联系我更新)</div>
     <div class="todo-card">
       <ul class="todo-list">
+        <li class="todo-item"><span class="todo-dot"></span><strong style="color:#be123c;">【黄本】4位同行人必须打好黄热病疫苗并随身携带实体黄本（ADD转机超12小时硬性要求）</strong></li>
+        <li class="todo-item"><span class="todo-dot"></span>【凭证】在吉达及开普敦值机柜台出票时，必须向地勤索取纸质打印版 Hotel Voucher</li>
+        <li class="todo-item"><span class="todo-dot"></span>【随身】随身背包备好厚口罩、厚外套及 2 双一次性袜子（ADD安检赤脚）</li>
         <li class="todo-item"><span class="todo-dot"></span>【接送】提前预订 11.23 半岛一日游包车（4人舒适商务车型）</li>
         <li class="todo-item"><span class="todo-dot"></span>【接送】预订 11.24 开普敦➔赫曼努斯、11.25 赫曼努斯➔海之角专车</li>
         <li class="todo-item"><span class="todo-dot"></span>【订座】预订 Bientang's Cave 悬崖洞穴海景晚餐 (11.24 晚)</li>
@@ -1440,10 +1515,9 @@
   </div>
 
   <script>
-    // 时间节点表（带显式时区偏移量）
     const scheduleEvents = [
       { name: "✈️ ET0463 航班从吉达起飞 (Terminal N)", time: new Date("2026-11-20T15:20:00+03:00") },
-      { name: "⏳ 亚的斯亚贝巴机场过夜中转 (13h40m)", time: new Date("2026-11-20T17:50:00+03:00") },
+      { name: "🏨 乘班车入住亚的斯亚贝巴中转免费酒店", time: new Date("2026-11-20T18:30:00+03:00") },
       { name: "🛬 ET0845 航班降落开普敦 (CPT)", time: new Date("2026-11-21T13:00:00+02:00") },
       { name: "🏡 入住开普敦 CBD 公寓", time: new Date("2026-11-21T15:00:00+02:00") },
       { name: "🚠 登桌山看大西洋云海", time: new Date("2026-11-22T09:00:00+02:00") },
@@ -1453,7 +1527,7 @@
       { name: "🏡 专车返回海之角 Sea Point 公寓", time: new Date("2026-11-25T16:00:00+02:00") },
       { name: "🍷 探访康斯坦提亚酒庄与华都鲜鲍", time: new Date("2026-11-26T10:00:00+02:00") },
       { name: "🛫 ET0846 航班起飞离开开普敦", time: new Date("2026-11-27T15:10:00+02:00") },
-      { name: "⏳ 亚的斯亚贝巴机场过夜中转 (12h25m)", time: new Date("2026-11-27T22:35:00+03:00") },
+      { name: "🏨 乘班车入住回程中转免费酒店", time: new Date("2026-11-27T23:30:00+03:00") },
       { name: "🛬 平安抵达吉达国际机场北航站楼", time: new Date("2026-11-28T13:30:00+03:00") }
     ];
 
@@ -1496,13 +1570,11 @@
       }
     }
 
-    // 记账面板展开/收起
     function toggleBillPanel() {
       const panel = document.getElementById('billPanel');
       panel.classList.toggle('open');
     }
 
-    // 涉及对象联动控制
     function toggleAllTargets(allBox) {
       const pBoxes = document.querySelectorAll('.target-person');
       pBoxes.forEach(b => b.checked = allBox.checked);
@@ -1515,7 +1587,6 @@
       allBox.checked = allChecked;
     }
 
-    // 本地存储记账数据
     let bills = JSON.parse(localStorage.getItem('trip_bills_data') || '[]');
 
     function renderBills() {
@@ -1550,7 +1621,6 @@
         container.innerHTML = html;
       }
 
-      // 更新四人统计
       ['许', '杨', '崔', '李'].forEach(p => {
         const el = document.getElementById('stat-' + p);
         if (el) el.innerText = (stats[p] || 0).toFixed(1) + ' 垫付';
@@ -1603,7 +1673,6 @@
       }
     }
 
-    // 1. 导出账单为 Excel (CSV 格式)
     function exportBillsToExcel() {
       if (bills.length === 0) {
         alert('当前没有可导出的账单记录！');
@@ -1636,7 +1705,6 @@
       URL.revokeObjectURL(url);
     }
 
-    // 2. 一键 AA 分账与结算（统一折算为 SAR）
     function calculateSettlement() {
       const box = document.getElementById('settlementBox');
       box.classList.add('show');
