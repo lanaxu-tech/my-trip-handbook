@@ -497,26 +497,39 @@
       word-break: break-all;
     }
 
-    /* 埃塞俄比亚转机专属板块强化（含免费中转酒店全流程） */
+    /* 埃塞俄比亚转机专属板块（可折叠式设计，默认收起） */
     .layover-box {
       background: var(--bg-card);
       border-radius: 16px;
-      padding: 16px;
       margin-bottom: 16px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
       border-left: 5px solid #0284c7;
+      overflow: hidden;
     }
     .layover-header {
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 10px;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      background: var(--bg-card);
+    }
+    .layover-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
     }
     .layover-title {
       font-size: 15px;
       font-weight: 800;
       color: var(--text-main);
+    }
+    .layover-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .layover-badge {
       font-size: 11px;
@@ -525,6 +538,20 @@
       background: var(--tag-danger-bg);
       color: var(--tag-danger-text);
       font-weight: 700;
+      white-space: nowrap;
+    }
+    .btn-toggle-layover {
+      font-size: 12px;
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .layover-body {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border-color);
     }
     .tips-grid {
       display: grid;
@@ -533,6 +560,7 @@
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
+      margin-top: 12px;
     }
     .tips-highlight {
       background: var(--bg-primary);
@@ -893,51 +921,61 @@
       </a>
     </div>
 
-    <!-- 埃塞俄比亚转机专属核心避坑与免费中转酒店申领板块 -->
+    <!-- 埃塞俄比亚转机专属核心避坑与免费中转酒店申领板块（已设置为可折叠收起） -->
     <div class="layover-box">
-      <div class="layover-header">
-        <div>
-          <div class="layover-title">🇪🇹 埃塞俄比亚转机：免费中转酒店申请与避坑攻略</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">
-            结合小红书真实亲测整理 · 
-            <a href="https://www.xiaohongshu.com/explore/6ab7c432000000000a024316" target="_blank" style="color:var(--accent); font-weight:700;">免费酒店攻略原帖 ↗</a> · 
-            <a href="https://www.xiaohongshu.com/explore/6ac6d7f5000000001c02e611" target="_blank" style="color:var(--accent); font-weight:700;">机场避坑原帖 ↗</a>
+      <div class="layover-header" onclick="toggleLayoverGuide()">
+        <div class="layover-title-group">
+          <div class="layover-title">🇪🇹 埃塞俄比亚转机：免费中转酒店与避坑攻略</div>
+          <div style="font-size: 11px; color: var(--text-muted);">
+            含免费酒店领取流程、黄本强制规定、两程出发时间
           </div>
         </div>
-        <span class="layover-badge">🚨 关键必读</span>
+        <div class="layover-actions">
+          <span class="layover-badge">🚨 关键必读</span>
+          <span class="btn-toggle-layover" id="layoverToggleBtn">展开详情 ▼</span>
+        </div>
       </div>
 
-      <div class="tips-grid">
-        <!-- 免费酒店实操 -->
-        <div class="tips-highlight" style="border-left: 3px solid #0284c7;">
-          <strong style="color: #0284c7;">🏨 埃航免费中转酒店申请与搭车步骤（中转>8小时免费）：</strong><br>
-          1. <strong>在出发机场（吉达 JED / 开普敦 CPT）值机时</strong>：务必主动向地勤索取<strong>纸质打印版 Hotel Voucher（酒店凭证）</strong>！4人一起递护照行程单，确保分在同一家酒店。<br>
-          2. <strong>落地 ADD 机场后</strong>：沿【Arrivals】一直走到【Passport Control】排队，核验通过后从<strong>蓝色小门</strong>走出，下楼过一次安检即到 Transit Hotel 接驳班车区（无需办繁琐出境海关）。<br>
-          3. <strong>上车入住</strong>：把 Voucher 给现场工作人员，工作人员会指引坐上对应酒店的免费班车前往入住。<br>
-          4. <strong>叫醒与返程</strong>：通常含免费早/晚餐。入住时向前台确认次日送机班车时间，出发前 1 小时酒店有叫醒服务。
+      <!-- 折叠内容区（默认隐藏） -->
+      <div class="layover-body" id="layoverBody" style="display: none;">
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 10px;">
+          小红书实测经验整理 · 
+          <a href="https://www.xiaohongshu.com/explore/6ab7c432000000000a024316" target="_blank" style="color:var(--accent); font-weight:700;">免费酒店攻略原帖 ↗</a> · 
+          <a href="https://www.xiaohongshu.com/explore/6ac6d7f5000000001c02e611" target="_blank" style="color:var(--accent); font-weight:700;">机场避坑原帖 ↗</a>
         </div>
 
-        <!-- 黄本硬核预警 -->
-        <div class="tips-highlight" style="border-left: 3px solid #be123c;">
-          <strong style="color: #be123c;">⚠️ 硬性规定：必须随身带实体「黄本」！</strong><br>
-          在埃塞俄比亚转机时长超过 12 小时（本次去程长达 13h40m），进入南非及在 ADD 值机时<strong>被严格要求出示黄热病疫苗证书（黄本）</strong>！4 位同行人必须提前接种并随身携带纸质黄本，查验非常较真。
-        </div>
+        <div class="tips-grid">
+          <!-- 免费酒店实操 -->
+          <div class="tips-highlight" style="border-left: 3px solid #0284c7;">
+            <strong style="color: #0284c7;">🏨 埃航免费中转酒店申请与搭车步骤（中转>8小时免费）：</strong><br>
+            1. <strong>在出发机场（吉达 JED / 开普敦 CPT）值机时</strong>：务必主动向地勤索取<strong>纸质打印版 Hotel Voucher（酒店凭证）</strong>[cite: 12]！4人一起递护照行程单，确保分在同一家酒店[cite: 12]。<br>
+            2. <strong>落地 ADD 机场后</strong>：沿【Arrivals】一直走到【Passport Control】排队，核验通过后从<strong>蓝色小门</strong>走出，下楼过安检到达 Transit Hotel 接驳班车区（无需办繁琐出境海关）[cite: 12]。<br>
+            3. <strong>上车入住</strong>：把 Voucher 给现场工作人员，工作人员会指引坐上对应酒店的免费班车前往入住[cite: 12]。<br>
+            4. <strong>叫醒与返程</strong>：通常含免费早/晚餐[cite: 12]。入住时向前台确认次日送机班车时间，出发前 1 小时酒店有叫醒服务[cite: 12]。
+          </div>
 
-        <!-- 精确时间锚点 -->
-        <div class="tips-highlight">
-          <strong>⏰ 本次行程具体出发时间锚点（起码预留 3.5 小时）：</strong><br>
-          • <strong>去程（11月21日 ET0845，07:30起飞）</strong>：必须在 <strong>04:00</strong> 离开中转酒店前往航站楼，<strong>04:30</strong> 到达 T2 开始排 1 楼首道预安检（排队看护照+机票）。<br>
-          • <strong>回程（11月28日 ET0462，11:00起飞）</strong>：白天易遇塞车，必须在 <strong>07:30</strong> 从中转酒店启动出发流程，<strong>08:00</strong> 到达大厅排队。
-        </div>
+          <!-- 黄本硬核预警 -->
+          <div class="tips-highlight" style="border-left: 3px solid #be123c;">
+            <strong style="color: #be123c;">⚠️ 硬性规定：必须随身带实体「黄本」！</strong><br>
+            在埃塞俄比亚转机时长超过 12 小时（本次去程长达 13h40m），进入南非及在 ADD 值机时<strong>被严格要求出示黄热病疫苗证书（黄本）</strong>[cite: 11]！4 位同行人必须提前接种并随身携带纸质黄本，查验非常较真[cite: 11]。
+          </div>
 
-        <!-- 卫生与安检避坑 -->
-        <div class="tips-highlight">
-          <strong>🧦 卫生与随身装备避坑：</strong><br>
-          • <strong>穿鞋袜 + 备一次性袜子</strong>：安检必须脱鞋，所有人光脚踩地。备 2 双一次性袜子，安检后直接扔掉换新袜！<br>
-          • <strong>随身口罩</strong>：人流极大且体味/香水味浓重，务必随身揣好厚口罩。<br>
-          • <strong>带厚外套/保暖毯</strong>：候机大厅空调极冷，过夜转机务必穿暖。<br>
-          • <strong>保温杯</strong>：机场有直饮热水机，带保温杯可随时喝热水或泡面。<br>
-          • <strong>安检细节</strong>：手表均需单独取下过机；补水喷雾尽量不带；若买咖啡粉伴手礼建议托运。
+          <!-- 精确时间锚点 -->
+          <div class="tips-highlight">
+            <strong>⏰ 本次行程具体出发时间锚点（起码预留 3.5 小时）：</strong><br>
+            • <strong>去程（11月21日 ET0845，07:30起飞）</strong>：必须在 <strong>04:00</strong> 离开中转酒店前往航站楼，<strong>04:30</strong> 到达 T2 开始排 1 楼首道预安检（排队看护照+机票）[cite: 11]。<br>
+            • <strong>回程（11月28日 ET0462，11:00起飞）</strong>：白天易遇塞车，必须在 <strong>07:30</strong> 从中转酒店启动出发流程，<strong>08:00</strong> 到达大厅排队[cite: 11]。
+          </div>
+
+          <!-- 卫生与安检避坑 -->
+          <div class="tips-highlight">
+            <strong>🧦 卫生与随身装备避坑：</strong><br>
+            • <strong>穿鞋袜 + 备一次性袜子</strong>：安检必须脱鞋，所有人光脚踩地[cite: 11]。备 2 双一次性袜子，安检后直接扔掉换新袜[cite: 11]！<br>
+            • <strong>随身口罩</strong>：人流极大且体味/香水味浓重，务必随身揣好厚口罩[cite: 11]。<br>
+            • <strong>带厚外套/保暖毯</strong>：候机大厅空调极冷，过夜转机务必穿暖[cite: 11]。<br>
+            • <strong>保温杯</strong>：机场有直饮热水机，带保温杯可随时喝热水或泡面[cite: 11]。<br>
+            • <strong>安检细节</strong>：手表均需单独取下过机[cite: 11]；补水喷雾尽量不带[cite: 11]；若买咖啡粉伴手礼建议托运[cite: 11]。
+          </div>
         </div>
       </div>
     </div>
@@ -1054,7 +1092,7 @@
             <h4>抵达吉达机场北航站楼 (Terminal N)</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">📍 吉达北航站楼 (Terminal N)</a>
-              埃塞俄比亚航空值机柜台办理登机手续。<strong>向地勤出示4人机票，现场索取打印好的纸质 Hotel Voucher（中转酒店凭证）</strong>，确认行李直挂开普敦。
+              埃塞俄比亚航空值机柜台办理登机手续。<strong>向地勤出示4人机票，现场索取打印好的纸质 Hotel Voucher（中转酒店凭证）</strong>[cite: 12]，确认行李直挂开普敦。
             </div>
           </div>
         </div>
@@ -1072,7 +1110,7 @@
             <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
-              沿 Arrivals 走至 Passport Control 排队，查验后从<strong>蓝色小门</strong>走出，下楼过安检到达 Transit 接驳车区域，凭 Voucher 乘班车前往航司免费中转酒店入住休整。
+              沿 Arrivals 走至 Passport Control 排队，查验后从<strong>蓝色小门</strong>走出，下楼过安检到达 Transit 接驳车区域，凭 Voucher 乘班车前往航司免费中转酒店入住休整[cite: 12]。
             </div>
           </div>
         </div>
@@ -1097,7 +1135,7 @@
           <div class="t-content">
             <span class="tag tag-danger">严禁迟到·必须出发</span>
             <h4>中转酒店退房 / 乘班车前往 T2 航站楼</h4>
-            <div class="t-desc">起飞前 3.5 小时启动出发！在 1 楼首道预安检排队看护照机票。备好一次性袜子与口罩，<strong>随身备好黄本</strong>随时准备出示。</div>
+            <div class="t-desc">起飞前 3.5 小时启动出发[cite: 11]！在 1 楼首道预安检排队看护照机票[cite: 11]。备好一次性袜子与口罩[cite: 11]，<strong>随身备好黄本</strong>随时准备出示[cite: 11]。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1420,7 +1458,7 @@
             <span class="tag tag-danger">必须领纸质 Voucher</span>
             <h4>CPT 机场值机 · 索取回程中转酒店凭证</h4>
             <div class="t-desc">
-              办理 ET0846 值机托运时，<strong>向地勤索取亚的斯亚贝巴过夜的免费中转酒店纸质 Voucher</strong>，确认行李直挂吉达。
+              办理 ET0846 值机托运时，<strong>向地勤索取亚的斯亚贝巴过夜的免费中转酒店纸质 Voucher</strong>[cite: 12]，确认行李直挂吉达。
             </div>
           </div>
         </div>
@@ -1441,7 +1479,7 @@
             <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
-              沿通道排队过核验，出蓝色小门下楼，凭下午在 CPT 领到的 Voucher 搭乘班车入住中转酒店休息。
+              沿通道排队过核验，出蓝色小门下楼，凭下午在 CPT 领到的 Voucher 搭乘班车入住中转酒店休息[cite: 12]。
             </div>
           </div>
         </div>
@@ -1466,7 +1504,7 @@
           <div class="t-content">
             <span class="tag tag-danger">白天塞车高峰·提前3.5h</span>
             <h4>启动出发流程 / 乘班车前往 T2 航站楼</h4>
-            <div class="t-desc">白天机场道路与大厅人流量急剧增加，务必提前 3.5 小时出发。脱鞋脱外套排队过检。进免税区可买埃塞高地咖啡豆。</div>
+            <div class="t-desc">白天机场道路与大厅人流量急剧增加，务必提前 3.5 小时出发[cite: 11]。脱鞋脱外套排队过检[cite: 11]。进免税区可买埃塞高地咖啡豆[cite: 11]。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1567,6 +1605,19 @@
         el.style.display = "block";
       } else {
         el.style.display = "none";
+      }
+    }
+
+    // 转机攻略专属展开/收起
+    function toggleLayoverGuide() {
+      const body = document.getElementById('layoverBody');
+      const btn = document.getElementById('layoverToggleBtn');
+      if (body.style.display === 'none') {
+        body.style.display = 'block';
+        btn.innerText = '收起 ▲';
+      } else {
+        body.style.display = 'none';
+        btn.innerText = '展开详情 ▼';
       }
     }
 
