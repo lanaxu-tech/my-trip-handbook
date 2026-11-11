@@ -461,11 +461,12 @@
       background: var(--bg-primary);
     }
 
-    .booking-card {
+    /* 嵌在日期内部的交通/住宿高亮卡片 */
+    .day-booking-card {
       background: var(--bg-card);
       border-radius: 14px;
       padding: 14px 16px;
-      margin-bottom: 12px;
+      margin: 12px 0;
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
       display: flex;
@@ -491,8 +492,9 @@
       color: var(--text-muted);
     }
     .booking-name {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
+      color: var(--text-main);
     }
     .booking-detail {
       font-size: 13px;
@@ -1059,48 +1061,6 @@
       </div>
     </div>
 
-    <!-- 3. 已确认交通与住宿 -->
-    <div class="section-title">已确认交通与住宿 (精准航站楼与地图)</div>
-    
-    <!-- 航班 1 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">去程第一程 · ET0463</span>
-        <span class="booking-time">2026-11-20 (周五)</span>
-      </div>
-      <div class="booking-name">吉达 (JED) ➔ 亚的斯亚贝巴 (ADD)</div>
-      <div class="booking-detail">
-        • 起飞：15:20 | <strong>吉达国际机场 (JED) · 北航站楼 (Terminal N)</strong><br>
-        • 降落：17:50 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
-        • 飞行时长：2 小时 30 分钟
-      </div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">
-        📍 吉达机场北航站楼 (JED Terminal N) 地图导航
-      </a>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">
-        📍 亚的斯亚贝巴机场2号航站楼 (ADD Terminal 2) 地图导航
-      </a>
-    </div>
-
-    <!-- 去程中转免费酒店卡片 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type" style="background:#fef3c7; color:#b45309;">去程过夜中转住宿 (免费)</span>
-        <span class="booking-time">11.20 19:00 - 11.21 04:00</span>
-      </div>
-      <div class="booking-name" id="display-outbound-hotel-name">埃塞俄比亚航空分配中转酒店 (待分配)</div>
-      <div class="booking-detail">
-        航司随机分配，在吉达机场值机时领取纸质 Voucher。拿到酒店名称后在下方填入，即可生成地图导航！
-      </div>
-      <div class="hotel-input-box">
-        <div class="hotel-input-row">
-          <input type="text" class="hotel-input" id="input-outbound-hotel" placeholder="输入去程酒店名称/地址..." onblur="saveHotelInfo('outbound')" />
-          <button type="button" class="btn-hotel-save" onclick="saveHotelInfo('outbound')">保存</button>
-        </div>
-        <div id="nav-outbound-container"></div>
-      </div>
-    </div>
-
     <!-- 埃塞俄比亚转机专属板块（可折叠） -->
     <div class="layover-box">
       <div class="layover-header" onclick="toggleLayoverGuide()">
@@ -1128,7 +1088,7 @@
           <div class="tips-highlight" style="border-left: 3px solid #f59e0b;">
             <strong style="color: #b45309;">☕ 亚的斯亚贝巴 11月28日晨间 Brunch & 精品咖啡馆规划：</strong>
             <div style="font-size: 12px; color: var(--text-muted); margin: 4px 0 8px;">
-              💡 <strong>时间窗口确定</strong>：11月28日航班 ET0462 于 11:00 起飞[cite: 1]；<strong>07:00 准时从中转酒店出发</strong>，享用 45~60 分钟精品咖啡早午餐，<strong>08:15 抵达 T2 航站楼</strong>开始排队预安检，动线从容！
+              💡 <strong>时间窗口确定</strong>：11月28日航班 ET0462 于 11:00 起飞[cite: 1]；<strong>07:00 准时从中转酒店出发</strong>，享用 45~60 分钟精品咖啡早午餐，<strong>08:15 抵达 T2 航站楼</strong>开始排队预安检，动线从容[cite: 1]！
             </div>
 
             <div class="cafe-card-grid">
@@ -1203,116 +1163,8 @@
       </div>
     </div>
 
-    <!-- 航班 2 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">去程第二程 · ET0845</span>
-        <span class="booking-time">2026-11-21 (周六)</span>
-      </div>
-      <div class="booking-name">亚的斯亚贝巴 (ADD) ➔ 开普敦 (CPT)</div>
-      <div class="booking-detail">
-        • 起飞：07:30 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
-        • 降落：13:00 | <strong>开普敦国际机场 (CPT) · 国际到达厅 (International Terminal)</strong><br>
-        • 飞行时长：6 小时 30 分钟
-      </div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">
-        📍 开普敦国际机场 (CPT) 地图导航
-      </a>
-    </div>
-
-    <!-- 航班 3 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">回程第一程 · ET0846</span>
-        <span class="booking-time">2026-11-27 (周五)</span>
-      </div>
-      <div class="booking-name">开普敦 (CPT) ➔ 亚的斯亚贝巴 (ADD)</div>
-      <div class="booking-detail">
-        • 起飞：15:10 | <strong>开普敦国际机场 (CPT) · 国际出发厅 (International Terminal)</strong><br>
-        • 降落：22:35 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
-        • 飞行时长：6 小时 25 分钟
-      </div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">
-        📍 开普敦国际机场国际出发厅地图导航
-      </a>
-    </div>
-
-    <!-- 回程中转免费酒店卡片 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type" style="background:#fef3c7; color:#b45309;">回程过夜中转住宿 (免费)</span>
-        <span class="booking-time">11.27 23:30 - 11.28 07:00</span>
-      </div>
-      <div class="booking-name" id="display-return-hotel-name">埃塞俄比亚航空分配中转酒店 (待分配)</div>
-      <div class="booking-detail">
-        在开普敦机场值机时向地勤索取纸质 Voucher。拿到酒店名称后在下方填入，即可生成地图导航！
-      </div>
-      <div class="hotel-input-box">
-        <div class="hotel-input-row">
-          <input type="text" class="hotel-input" id="input-return-hotel" placeholder="输入回程酒店名称/地址..." onblur="saveHotelInfo('return')" />
-          <button type="button" class="btn-hotel-save" onclick="saveHotelInfo('return')">保存</button>
-        </div>
-        <div id="nav-return-container"></div>
-      </div>
-    </div>
-
-    <!-- 航班 4 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">回程第二程 · ET0462</span>
-        <span class="booking-time">2026-11-28 (周六)</span>
-      </div>
-      <div class="booking-name">亚的斯亚贝巴 (ADD) ➔ 吉达 (JED)</div>
-      <div class="booking-detail">
-        • 起飞：11:00 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
-        • 降落：13:30 | <strong>吉达国际机场 (JED) · 北航站楼 (Terminal N)</strong><br>
-        • 飞行时长：2 小时 30 分钟
-      </div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">
-        📍 吉达机场北航站楼 (JED Terminal N) 地图导航
-      </a>
-    </div>
-
-    <!-- 住宿 1 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">住宿 · CBD 公寓 (3晚)</span>
-        <span class="booking-time">11.21 16:00 入住 - 11.24 10:00 退房</span>
-      </div>
-      <div class="booking-name">Central City Oasis 2BR</div>
-      <div class="booking-detail">房东电话：+27 83 727 7324</div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">
-        📍 3 Saint Georges Mall, Cape Town (点此导航)
-      </a>
-    </div>
-
-    <!-- 住宿 2 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">住宿 · 赫曼努斯小木屋 (1晚)</span>
-        <span class="booking-time">11.24 15:00 入住 - 11.25 10:00 退房</span>
-      </div>
-      <div class="booking-name">Conveniently Located 2 Bedroom Cottage (6 Stemmet Lodge)</div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=6+Stemmet+Lodge+Hermanus" target="_blank">
-        📍 Overstrand / Hermanus (点此导航)
-      </a>
-    </div>
-
-    <!-- 住宿 3 -->
-    <div class="booking-card">
-      <div class="booking-header">
-        <span class="booking-type">住宿 · 海之角海景公寓 (2晚)</span>
-        <span class="booking-time">11.25 15:00 入住 - 11.27 10:00 退房</span>
-      </div>
-      <div class="booking-name">Adelphi Centre 5th Floor Apartment (2BR)</div>
-      <div class="booking-detail">房东电话：+27 82 871 6320</div>
-      <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Adelphi+Centre+28+Hofmeyr+Road+Sea+Point" target="_blank">
-        📍 28 Hofmeyr Road, Sea Point, Cape Town (点此导航)
-      </a>
-    </div>
-
-    <!-- 4. 逐日松弛漫游行程 -->
-    <div class="section-title">逐日松弛漫游行程 (单日板块 & 每日美食地图)</div>
+    <!-- 3. 逐日松弛漫游行程（已将交通与住宿合并至对应日期） -->
+    <div class="section-title">逐日松弛漫游行程 (交通·住宿·美食综合版)</div>
 
     <!-- Day 0 (11月20日) -->
     <div class="day-container">
@@ -1327,14 +1179,53 @@
       </div>
       <div class="day-content" id="d0">
         <div class="day-mini-map">动线：吉达国际机场北航站楼 (Terminal N) ➔ 亚的斯亚贝巴机场 (Terminal 2) ➔ 乘班车至中转酒店</div>
+        
+        <!-- 当日航班卡片 -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">去程第一程 · ET0463</span>
+            <span class="booking-time">11-20 (周五) 15:20 - 17:50</span>
+          </div>
+          <div class="booking-name">吉达 (JED) ➔ 亚的斯亚贝巴 (ADD)</div>
+          <div class="booking-detail">
+            • 起飞：15:20 | <strong>吉达国际机场 (JED) · 北航站楼 (Terminal N)</strong><br>
+            • 降落：17:50 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+            • 飞行时长：2 小时 30 分钟 · 行李直挂开普敦 (CPT)
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">
+            📍 吉达机场北航站楼 (JED Terminal N) 地图导航
+          </a>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">
+            📍 亚的斯亚贝巴机场2号航站楼 (ADD Terminal 2) 地图导航
+          </a>
+        </div>
+
+        <!-- 当日住宿卡片（去程中转免费酒店） -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type" style="background:#fef3c7; color:#b45309;">去程过夜中转住宿 (航司免费提供)</span>
+            <span class="booking-time">11.20 19:00 - 11.21 04:00</span>
+          </div>
+          <div class="booking-name" id="display-outbound-hotel-name">埃塞俄比亚航空分配中转酒店 (待分配)</div>
+          <div class="booking-detail">
+            在吉达机场值机时向地勤索取纸质 Voucher[cite: 2]。落地拿到酒店名称后在下方填入，即可自动生成地图导航！
+          </div>
+          <div class="hotel-input-box">
+            <div class="hotel-input-row">
+              <input type="text" class="hotel-input" id="input-outbound-hotel" placeholder="输入去程酒店名称/地址..." onblur="saveHotelInfo('outbound')" />
+              <button type="button" class="btn-hotel-save" onclick="saveHotelInfo('outbound')">保存</button>
+            </div>
+            <div id="nav-outbound-container"></div>
+          </div>
+        </div>
+
         <div class="timeline-item">
           <div class="t-time">12:30</div>
           <div class="t-content">
             <span class="tag tag-danger">必须领取纸质 Voucher</span>
             <h4>抵达吉达机场北航站楼 (Terminal N)</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">📍 吉达北航站楼 (Terminal N)</a>
-              埃塞俄比亚航空值机柜台办理登机手续。<strong>向地勤出示4人机票，现场索取打印好的纸质 Hotel Voucher（中转酒店凭证）</strong>，确认行李直挂开普敦。
+              埃塞俄比亚航空值机柜台办理登机手续。<strong>向地勤出示4人机票，现场索取打印好的纸质 Hotel Voucher（中转酒店凭证）</strong>[cite: 2]，确认行李直挂开普敦。
             </div>
           </div>
         </div>
@@ -1351,11 +1242,7 @@
             <span class="tag tag-warn">中转 13h40m · 入住免费酒店</span>
             <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
-              沿 Arrivals 走至 Passport Control 排队，查验后从<strong>蓝色小门</strong>走出，下楼过安检到达 Transit 接驳车区域，凭 Voucher 乘班车前往航司免费中转酒店入住休整。
-            </div>
-            <div style="margin-top: 6px;" id="timeline-outbound-hotel-box">
-              <span style="font-size: 12px; color: var(--accent); font-weight:700;" id="timeline-outbound-hotel-text">🏨 中转酒店：待定（可在上方输入更新）</span>
+              沿 Arrivals 走至 Passport Control 排队，查验后从<strong>蓝色小门</strong>走出，下楼过安检到达 Transit 接驳车区域，凭 Voucher 乘班车前往航司免费中转酒店入住休整[cite: 2]。
             </div>
           </div>
         </div>
@@ -1367,7 +1254,7 @@
       <div class="day-header" onclick="toggleDay('d1')">
         <div class="day-title-group">
           <h3>2026年11月21日 (周六) · 抵达开普敦</h3>
-          <div class="day-subtitle">早 04:00 出发安检 ➔ 飞抵开普敦 ➔ CBD 公寓 ➔ V&A码头海狮与生蚝</div>
+          <div class="day-subtitle">早 04:00 出发安检 ➔ 飞抵开普敦 ➔ 入住 CBD 公寓 ➔ V&A码头海狮与生蚝</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/Cape+Town+International+Airport/3+St+Georges+Mall/Victoria+Wharf+Shopping+Centre/Knysna+Oyster+Company+-+V%26A+Waterfront" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -1375,6 +1262,40 @@
       </div>
       <div class="day-content" id="d1">
         <div class="day-mini-map">动线：ADD T2 飞往 CPT ➔ CBD 公寓入住 ➔ 打车至 V&A Waterfront 逛街看海狮吃晚餐</div>
+
+        <!-- 当日航班卡片 -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">去程第二程 · ET0845</span>
+            <span class="booking-time">11-21 (周六) 07:30 - 13:00</span>
+          </div>
+          <div class="booking-name">亚的斯亚贝巴 (ADD) ➔ 开普敦 (CPT)</div>
+          <div class="booking-detail">
+            • 起飞：07:30 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+            • 降落：13:00 | <strong>开普敦国际机场 (CPT) · 国际到达厅 (International Terminal)</strong><br>
+            • 飞行时长：6 小时 30 分钟
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">
+            📍 开普敦国际机场 (CPT) 地图导航
+          </a>
+        </div>
+
+        <!-- 当日住宿卡片（CBD 公寓） -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">住宿 · CBD 公寓 (连住3晚)</span>
+            <span class="booking-time">11.21 16:00 入住 - 11.24 10:00 退房</span>
+          </div>
+          <div class="booking-name">Central City Oasis 2BR</div>
+          <div class="booking-detail">
+            • 地址：3 Saint Georges Mall, Cape Town<br>
+            • 房东联系电话：+27 83 727 7324 (配密码锁与厨房)
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">
+            📍 3 Saint Georges Mall 地图导航直达
+          </a>
+        </div>
+
         <div class="timeline-item">
           <div class="t-time">04:00</div>
           <div class="t-content">
@@ -1395,8 +1316,7 @@
           <div class="t-content">
             <h4>落地开普敦国际机场 (CPT) 国际到达厅</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">📍 开普敦国际机场</a>
-              顺利入境并提取直挂行李。在大厅办好本地网络，4 人呼叫一辆 UberXL 前往市中心（车程约 25 分钟）。
+              顺利入境并提取直挂行李。在大厅办好本地网络，4 人呼叫一辆 UberXL 前往市中心公寓（车程约 25 分钟）。
             </div>
           </div>
         </div>
@@ -1404,7 +1324,7 @@
           <div class="t-time">15:00</div>
           <div class="t-content">
             <h4>入住 CBD 两居室公寓</h4>
-            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=3+St+Georges+Mall+Cape+Town" target="_blank">📍 3 Saint Georges Mall</a> 安顿行李，稍微休息冲凉。</div>
+            <div class="t-desc">3 Saint Georges Mall 安顿行李，稍微休息冲凉。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1413,7 +1333,7 @@
             <span class="tag tag-tmi">🦭 免费看海狮机位</span>
             <h4>V&A Waterfront 海滨漫步、看野生海狮与生蚝晚餐</h4>
             <div class="t-desc">
-              打车 10 分钟至 <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Victoria+Wharf+Shopping+Centre" target="_blank">📍 Victoria Wharf Shopping Centre</a>。吹海风看夕阳下的港湾游艇，享用生蚝美食。
+              打车 10 分钟至 Victoria Wharf 购物中心。吹海风看夕阳下的港湾游艇，享用生蚝美食。
               <div class="tmi-box">
                 <strong>💡 就近 TMI 彩蛋[cite: 4]：</strong>不用花钱坐船！走到码头甲板边（特别是游轮与货船靠泊处附近），常年有成群的野生南非海狮趴在浮木甲板上懒洋洋晒太阳，码头尽头还能看到很多黑背鸥觅食[cite: 4]！
               </div>
@@ -1656,7 +1576,7 @@
       <div class="day-header" onclick="toggleDay('d4')">
         <div class="day-title-group">
           <h3>2026年11月24日 (周二) · 开普敦 ➔ 赫曼努斯</h3>
-          <div class="day-subtitle">预约专车接送 · 悬崖栈道 · 老港口 · 悬崖岩洞海鲜晚餐</div>
+          <div class="day-subtitle">预约专车接送 · 入住赫曼努斯木屋 · 悬崖栈道 · 悬崖岩洞海鲜晚餐</div>
         </div>
         <div class="day-actions">
           <a class="btn-route" href="https://www.google.com/maps/dir/3+St+Georges+Mall/6+Stemmet+Lodge+Hermanus/Old+Harbour+Museum+Hermanus/Bientang's+Cave+Restaurant+%26+Wine+Bar" target="_blank" onclick="event.stopPropagation();">全天路线</a>
@@ -1664,6 +1584,23 @@
       </div>
       <div class="day-content" id="d4">
         <div class="day-mini-map">动线：CBD 退房 ➔ 专车送达赫曼努斯 ➔ Cliff Path 步道 ➔ 老港口 ➔ 洞穴海景晚餐</div>
+
+        <!-- 当日住宿卡片（赫曼努斯木屋） -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">住宿 · 赫曼努斯小木屋 (1晚)</span>
+            <span class="booking-time">11.24 15:00 入住 - 11.25 10:00 退房</span>
+          </div>
+          <div class="booking-name">Conveniently Located 2 Bedroom Cottage (6 Stemmet Lodge)</div>
+          <div class="booking-detail">
+            • 地址：6 Stemmet Lodge, Overstrand, Hermanus<br>
+            • 带有独立庭院与车位，漫步至老港口观鲸海岸栈道极近
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=6+Stemmet+Lodge+Hermanus" target="_blank">
+            📍 6 Stemmet Lodge 地图导航直达
+          </a>
+        </div>
+
         <div class="timeline-item">
           <div class="t-time">10:00</div>
           <div class="t-content">
@@ -1676,7 +1613,7 @@
           <div class="t-time">13:00</div>
           <div class="t-content">
             <h4>入住赫曼努斯 2BR 小木屋</h4>
-            <div class="t-desc"><a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=6+Stemmet+Lodge+Hermanus" target="_blank">📍 6 Stemmet Lodge</a> 安顿好行李。</div>
+            <div class="t-desc">6 Stemmet Lodge 安顿好行李。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1744,6 +1681,23 @@
       </div>
       <div class="day-content" id="d5">
         <div class="day-mini-map">动线：赫曼努斯海边漫步/出海 ➔ 午餐取行李 ➔ 专车返程 ➔ 入住 Sea Point 公寓</div>
+
+        <!-- 当日住宿卡片（Sea Point 海景公寓） -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">住宿 · 海之角海景公寓 (连住2晚)</span>
+            <span class="booking-time">11.25 15:00 入住 - 11.27 10:00 退房</span>
+          </div>
+          <div class="booking-name">Adelphi Centre 5th Floor Apartment (2BR)</div>
+          <div class="booking-detail">
+            • 地址：28 Hofmeyr Road, Sea Point, Cape Town<br>
+            • 房东联系电话：+27 82 871 6320 (海景阳台、直面大西洋海滨步道)
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Adelphi+Centre+28+Hofmeyr+Road+Sea+Point" target="_blank">
+            📍 Adelphi Centre 28 Hofmeyr Road 地图导航直达
+          </a>
+        </div>
+
         <div class="timeline-item">
           <div class="t-time">09:00</div>
           <div class="t-content">
@@ -1771,7 +1725,6 @@
             <span class="tag tag-tmi">🌿 海藻森林生态</span>
             <h4>入住 Sea Point 海之角两居室</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Adelphi+Centre+28+Hofmeyr+Road+Sea+Point" target="_blank">📍 Adelphi Centre 5楼公寓</a> 
               晚间可在 Sea Point 海滨长廊散步，晚上还能顺道逛逛周三仅有的 Oranjezicht 夜市！
               <div class="tmi-box">
                 <strong>💡 就近 TMI 彩蛋[cite: 4]：</strong>沿着 Sea Point 滨海步道漫步时，清澈见底的浅海里漂浮着成片如童话一般的非洲巨型海藻森林（Kelp Forest）[cite: 4]，岸边礁石上还经常能偶遇噪鹃和海鸟驻足栖息[cite: 4]。
@@ -1911,6 +1864,43 @@
       </div>
       <div class="day-content" id="d7">
         <div class="day-mini-map">动线：Sea Point ➔ MIKRO 咖啡 ➔ 退房 ➔ 送往 CPT 国际机场 ➔ 飞往 ADD ➔ 乘班车入住中转酒店</div>
+
+        <!-- 当日航班卡片 -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">回程第一程 · ET0846</span>
+            <span class="booking-time">11-27 (周五) 15:10 - 22:35</span>
+          </div>
+          <div class="booking-name">开普敦 (CPT) ➔ 亚的斯亚贝巴 (ADD)</div>
+          <div class="booking-detail">
+            • 起飞：15:10 | <strong>开普敦国际机场 (CPT) · 国际出发厅 (International Terminal)</strong><br>
+            • 降落：22:35 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+            • 飞行时长：6 小时 25 分钟 · 行李直挂吉达 (JED)
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">
+            📍 开普敦国际机场国际出发厅地图导航
+          </a>
+        </div>
+
+        <!-- 当日住宿卡片（回程中转免费酒店） -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type" style="background:#fef3c7; color:#b45309;">回程过夜中转住宿 (航司免费提供)</span>
+            <span class="booking-time">11.27 23:30 - 11.28 07:00</span>
+          </div>
+          <div class="booking-name" id="display-return-hotel-name">埃塞俄比亚航空分配中转酒店 (待分配)</div>
+          <div class="booking-detail">
+            在开普敦机场值机时向地勤索取纸质 Voucher[cite: 2]。拿到酒店名称后在下方填入，即可自动生成地图导航！
+          </div>
+          <div class="hotel-input-box">
+            <div class="hotel-input-row">
+              <input type="text" class="hotel-input" id="input-return-hotel" placeholder="输入回程酒店名称/地址..." onblur="saveHotelInfo('return')" />
+              <button type="button" class="btn-hotel-save" onclick="saveHotelInfo('return')">保存</button>
+            </div>
+            <div id="nav-return-container"></div>
+          </div>
+        </div>
+
         <div class="timeline-item">
           <div class="t-time">09:00</div>
           <div class="t-content">
@@ -1934,7 +1924,7 @@
             <span class="tag tag-danger">必须领纸质 Voucher</span>
             <h4>CPT 机场值机 · 索取回程中转酒店凭证</h4>
             <div class="t-desc">
-              办理 ET0846 值机托运时，<strong>向地勤索取亚的斯亚贝巴过夜的免费中转酒店纸质 Voucher</strong>，确认行李直挂吉达。
+              办理 ET0846 值机托运时，<strong>向地勤索取亚的斯亚贝巴过夜的免费中转酒店纸质 Voucher</strong>[cite: 2]，确认行李直挂吉达。
             </div>
           </div>
         </div>
@@ -1943,7 +1933,6 @@
           <div class="t-content">
             <h4>ET0846 航班起飞离开开普敦</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Cape+Town+International+Airport" target="_blank">📍 开普敦国际机场</a>
               起飞离开南非，空中飞行约 6 小时 25 分钟。
             </div>
           </div>
@@ -1954,11 +1943,7 @@
             <span class="tag tag-warn">回程中转 12h25m · 入住酒店</span>
             <h4>降落亚的斯亚贝巴 (ADD) Terminal 2</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Addis+Ababa+Bole+International+Airport+Terminal+2" target="_blank">📍 亚的斯亚贝巴机场 Terminal 2</a>
-              沿通道排队过核验，出蓝色小门下楼，凭下午在 CPT 领到的 Voucher 搭乘班车入住中转酒店休息。
-            </div>
-            <div style="margin-top: 6px;" id="timeline-return-hotel-box">
-              <span style="font-size: 12px; color: var(--accent); font-weight:700;" id="timeline-return-hotel-text">🏨 回程中转酒店：待定（可在上方输入更新）</span>
+              沿通道排队过核验，出蓝色小门下楼，凭下午在 CPT 领到的 Voucher 搭乘班车入住中转酒店休息[cite: 2]。
             </div>
           </div>
         </div>
@@ -1978,6 +1963,24 @@
       </div>
       <div class="day-content" id="d8">
         <div class="day-mini-map">动线：中转酒店 ➔ 打车至 Tomoca/Moyee/Dukamo 咖啡馆 ➔ 08:15 抵达 ADD T2 航站楼 ➔ 飞往 JED</div>
+
+        <!-- 当日航班卡片 -->
+        <div class="day-booking-card">
+          <div class="booking-header">
+            <span class="booking-type">回程第二程 · ET0462</span>
+            <span class="booking-time">11-28 (周六) 11:00 - 13:30</span>
+          </div>
+          <div class="booking-name">亚的斯亚贝巴 (ADD) ➔ 吉达 (JED)</div>
+          <div class="booking-detail">
+            • 起飞：11:00 | <strong>博莱国际机场 (ADD) · 2号航站楼 (Terminal 2)</strong><br>
+            • 降落：13:30 | <strong>吉达国际机场 (JED) · 北航站楼 (Terminal N)</strong><br>
+            • 飞行时长：2 小时 30 分钟
+          </div>
+          <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">
+            📍 吉达机场北航站楼 (JED Terminal N) 地图导航
+          </a>
+        </div>
+
         <div class="timeline-item">
           <div class="t-time">07:00</div>
           <div class="t-content">
@@ -2020,7 +2023,6 @@
           <div class="t-content">
             <h4>降落吉达国际机场 (JED) · 北航站楼 (Terminal N)</h4>
             <div class="t-desc">
-              <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=King+Abdulaziz+International+Airport+North+Terminal+Jeddah" target="_blank">📍 吉达机场北航站楼 (JED Terminal N)</a>
               顺利通关并提取托运行李，精彩的南非之旅圆满收官！
             </div>
           </div>
@@ -2028,7 +2030,7 @@
       </div>
     </div>
 
-    <!-- 5. 待办清单 -->
+    <!-- 4. 待办清单 -->
     <div class="section-title">行前待办备忘清单 (改动请联系我更新)</div>
     <div class="todo-card">
       <ul class="todo-list">
@@ -2044,7 +2046,7 @@
       </ul>
     </div>
 
-    <!-- 6. 实用贴士 -->
+    <!-- 5. 实用贴士 -->
     <div class="section-title">南非实用安全与出行贴士</div>
     <div class="tips-card">
       <strong>🚕 4 人出行建议</strong>：市区内一律叫 <strong>UberXL</strong>（6座SUV或商务车），空间充裕，4 个人分摊下来比坐公交还便宜很多且极度安全。<br><br>
@@ -2056,7 +2058,7 @@
 
   <script>
     /* ========================================================
-       云数据库接入配置 (已填入你提供的真实 Supabase 项目信息)
+       云数据库接入配置
        ======================================================== */
     const SUPABASE_URL = "https://dnnbwuvhemmhklylfimo.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_iJ2V8woJ769iPdqGt9R7wg_RHJtsylH";
@@ -2147,7 +2149,6 @@
       if (outboundHotel) {
         document.getElementById('input-outbound-hotel').value = outboundHotel;
         document.getElementById('display-outbound-hotel-name').innerText = outboundHotel;
-        document.getElementById('timeline-outbound-hotel-text').innerText = '🏨 中转酒店：' + outboundHotel;
         document.getElementById('nav-outbound-container').innerHTML = `
           <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(outboundHotel + ' Addis Ababa')}" target="_blank">
             📍 点击在 Google 地图导航至【${outboundHotel}】
@@ -2158,7 +2159,6 @@
       if (returnHotel) {
         document.getElementById('input-return-hotel').value = returnHotel;
         document.getElementById('display-return-hotel-name').innerText = returnHotel;
-        document.getElementById('timeline-return-hotel-text').innerText = '🏨 回程中转酒店：' + returnHotel;
         document.getElementById('nav-return-container').innerHTML = `
           <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(returnHotel + ' Addis Ababa')}" target="_blank">
             📍 点击在 Google 地图导航至【${returnHotel}】
@@ -2173,7 +2173,6 @@
         localStorage.setItem('trip_outbound_hotel', val);
         if (val) {
           document.getElementById('display-outbound-hotel-name').innerText = val;
-          document.getElementById('timeline-outbound-hotel-text').innerText = '🏨 中转酒店：' + val;
           document.getElementById('nav-outbound-container').innerHTML = `
             <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(val + ' Addis Ababa')}" target="_blank">
               📍 点击在 Google 地图导航至【${val}】
@@ -2181,7 +2180,6 @@
           `;
         } else {
           document.getElementById('display-outbound-hotel-name').innerText = '埃塞俄比亚航空分配中转酒店 (待分配)';
-          document.getElementById('timeline-outbound-hotel-text').innerText = '🏨 中转酒店：待定（可在上方输入更新）';
           document.getElementById('nav-outbound-container').innerHTML = '';
         }
       } else if (type === 'return') {
@@ -2189,7 +2187,6 @@
         localStorage.setItem('trip_return_hotel', val);
         if (val) {
           document.getElementById('display-return-hotel-name').innerText = val;
-          document.getElementById('timeline-return-hotel-text').innerText = '🏨 回程中转酒店：' + val;
           document.getElementById('nav-return-container').innerHTML = `
             <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(val + ' Addis Ababa')}" target="_blank">
               📍 点击在 Google 地图导航至【${val}】
@@ -2197,7 +2194,6 @@
           `;
         } else {
           document.getElementById('display-return-hotel-name').innerText = '埃塞俄比亚航空分配中转酒店 (待分配)';
-          document.getElementById('timeline-return-hotel-text').innerText = '🏨 回程中转酒店：待定（可在上方输入更新）';
           document.getElementById('nav-return-container').innerHTML = '';
         }
       }
