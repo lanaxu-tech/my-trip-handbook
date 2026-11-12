@@ -548,7 +548,7 @@
       white-space: nowrap;
     }
 
-    /* 可折叠专用卡片（埃塞转机 & 酒庄备选共用） */
+    /* 可折叠专用卡片 */
     .layover-box {
       background: var(--bg-card);
       border-radius: 16px;
@@ -1375,13 +1375,13 @@
       </div>
     </div>
 
-    <!-- 新增：可折叠“酒庄备选”板块（置于 11.21 与 11.22 之间，节省空间） -->
+    <!-- 可折叠“酒庄备选”板块（置于 11.21 与 11.22 之间，内附与住宿的相对位置地图缩略图） -->
     <div class="layover-box winery-box">
       <div class="layover-header" onclick="toggleWineryGuide()">
         <div class="layover-title-group">
-          <div class="layover-title">🍷 酒庄备选库 · 6大名庄对比与特色指南</div>
+          <div class="layover-title">🍷 酒庄备选库 · 6大名庄对比与相对方位图</div>
           <div style="font-size: 11px; color: var(--text-muted);">
-            含历史古庄、网红酒罐包厢、看老虎狮子酒庄等备选清单
+            含历史古庄、网红酒罐包厢、看老虎狮子酒庄及与住宿位置图
           </div>
         </div>
         <div class="layover-actions">
@@ -1392,7 +1392,56 @@
 
       <div class="layover-body" id="wineryBody" style="display: none;">
         <div style="font-size: 12px; color: var(--text-muted); margin-top: 10px;">
-          💡 当前 11月26日 暂定 <strong>Groot Constantia</strong>（距市区最近）。若想调整酒庄风格或顺便看老虎，可随时从下方替换：
+          💡 当前 11月26日 暂定 <strong>Groot Constantia</strong>（距市区住宿最近）。下图展示 6 家酒庄与你们两大住宿地的相对地理方位：
+        </div>
+
+        <!-- 酒庄与住宿相对位置地图缩略图 -->
+        <div class="food-thumb-map" style="margin-top: 8px;">
+          <svg class="food-thumb-svg" viewBox="0 0 420 195" xmlns="http://www.w3.org/2000/svg">
+            <rect width="420" height="195" rx="8" fill="#f1f5f9"/>
+            <!-- 大西洋/福尔斯湾海岸线 -->
+            <path d="M 0,40 Q 65,60 65,115 Q 65,155 110,155 Q 165,155 190,145 Q 270,155 340,180 L 420,180 L 420,195 L 0,195 Z" fill="#bae6fd" opacity="0.75"/>
+            <text x="12" y="178" fill="#0369a1" font-size="8.5" font-weight="bold">ATLANTIC &amp; FALSE BAY</text>
+
+            <!-- 距离连接虚线 -->
+            <path d="M 68,68 L 160,34" fill="none" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <path d="M 68,68 L 95,110" fill="none" stroke="#10b981" stroke-width="2"/>
+            <path d="M 68,68 L 222,74" fill="none" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="3,2"/>
+            <path d="M 222,74 L 258,108 L 352,162" fill="none" stroke="#f97316" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+            <!-- 住宿锚点 1：开普敦市区 -->
+            <circle cx="68" cy="68" r="6" fill="#0284c7"/>
+            <text x="10" y="56" fill="#0f172a" font-size="9.5" font-weight="bold">🏠 CBD / Sea Point 宿</text>
+
+            <!-- 住宿锚点 2：赫曼努斯 -->
+            <circle cx="352" cy="162" r="5.5" fill="#f97316"/>
+            <text x="305" y="148" fill="#c2410c" font-size="9" font-weight="bold">🏠 赫曼努斯宿</text>
+
+            <!-- 机场参照 -->
+            <circle cx="152" cy="82" r="4" fill="#64748b"/>
+            <text x="118" y="95" fill="#475569" font-size="8.5" font-weight="bold">✈️ CPT机场</text>
+
+            <!-- 酒庄 1：Groot Constantia -->
+            <circle cx="95" cy="110" r="5.5" fill="#10b981"/>
+            <text x="14" y="124" fill="#047857" font-size="9" font-weight="bold">① Groot Constantia (25m)</text>
+
+            <!-- 酒庄 2：Klein Roosboom -->
+            <circle cx="160" cy="34" r="5.5" fill="#9333ea"/>
+            <text x="169" y="32" fill="#6b21a8" font-size="9" font-weight="bold">② Klein Roosboom 网红酒罐 (30m)</text>
+
+            <!-- 酒庄 6：Saxenburg -->
+            <circle cx="188" cy="76" r="5" fill="#9333ea"/>
+            <text x="172" y="65" fill="#6b21a8" font-size="8.5" font-weight="bold">⑥ Saxenburg</text>
+
+            <!-- 酒庄 3 & 4：Vredenheim & Spier -->
+            <circle cx="235" cy="72" r="6" fill="#be123c"/>
+            <text x="245" y="67" fill="#be123c" font-size="9" font-weight="bold">③ Vredenheim (看老虎🐯)</text>
+            <text x="245" y="79" fill="#6b21a8" font-size="8.5" font-weight="bold">&amp; ④ Spier 艺术庄园 (40m)</text>
+
+            <!-- 酒庄 5：Lourensford -->
+            <circle cx="258" cy="108" r="5.5" fill="#9333ea"/>
+            <text x="267" y="111" fill="#6b21a8" font-size="9" font-weight="bold">⑤ Lourensford (去赫曼努斯顺路)</text>
+          </svg>
         </div>
 
         <div class="cafe-card-grid">
@@ -1954,7 +2003,7 @@
             <h4>开普敦最古老庄园：Groot Constantia</h4>
             <div class="t-desc">
               <a class="nav-link" href="https://www.google.com/maps/search/?api=1&query=Groot+Constantia" target="_blank">📍 Groot Constantia</a> 
-              距离市区仅 25 分钟车程，在古老橡树林与庄园里悠闲漫步，品尝拿破仑同款传奇甜白酒（如需更换其他酒庄，可参考上方「酒庄备选库」）。
+              距离市区仅 25 分钟车程，在古老橡树林与庄园里悠闲漫步，品尝拿破仑同款传奇甜白酒（如需更换其他酒庄，可参考「酒庄备选库」）。
             </div>
           </div>
         </div>
@@ -2133,7 +2182,7 @@
       </div>
     </div>
 
-    <!-- Day 8 (11月28日) —— 已将埃塞转机 Brunch 咖啡馆完整并入此日 -->
+    <!-- Day 8 (11月28日) -->
     <div class="day-container">
       <div class="day-header" onclick="toggleDay('d8')">
         <div class="day-title-group">
@@ -2210,7 +2259,6 @@
           </div>
         </div>
 
-        <!-- Day 8 专属转机咖啡馆地图（含点位缩略图） -->
         <div class="day-food-map">
           <div class="day-food-header">
             <span>☕ Day 8 美食地图 (亚的斯亚贝巴 11月28日晨间 Brunch 候选)</span>
